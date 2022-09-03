@@ -1,0 +1,12 @@
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\bin\Debug\net6.0\Contracts.deps.json
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\bin\Debug\net6.0\Contracts.dll
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\bin\Debug\net6.0\ref\Contracts.dll
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\bin\Debug\net6.0\Contracts.pdb
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\obj\Debug\net6.0\Contracts.csproj.AssemblyReference.cache
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\obj\Debug\net6.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\obj\Debug\net6.0\Contracts.AssemblyInfoInputs.cache
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\obj\Debug\net6.0\Contracts.AssemblyInfo.cs
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\obj\Debug\net6.0\Contracts.csproj.CoreCompileInputs.cache
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\obj\Debug\net6.0\Contracts.dll
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\obj\Debug\net6.0\ref\Contracts.dll
+D:\C#\aspnetcore-microservices\src\BuildingBlocks\Contracts\obj\Debug\net6.0\Contracts.pdb
