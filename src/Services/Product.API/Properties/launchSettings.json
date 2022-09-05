@@ -12,7 +12,7 @@
     "Product.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5002",
       "environmentVariables": {

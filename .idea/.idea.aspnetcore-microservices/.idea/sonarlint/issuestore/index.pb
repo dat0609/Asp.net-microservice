@@ -1,6 +1,4 @@
 
-[
-+src/Services/Product.API/Product.API.csproj,3\3\331f0b265295b87cf0d43d9b1180e0661071d639
 _
 /src/BuildingBlocks/Common.Logging/Serilogger.cs,9\2\928c4d7c8b565ce5816b2062918599e6eecf25f2
 R
@@ -23,8 +21,6 @@ d
 4src/Services/Inventory.Customer.API/appsettings.json,2\a\2adefe79cca90027745ad4715973ef29e1901a58
 Z
 *src/Services/Ordering.API/appsettings.json,e\6\e6ab72733901f44ef7ede6138cca88b73fcd10af
-g
-7src/Services/Product.API/Properties/launchSettings.json,4\5\4533dfc9230a4bb59e9e86bfdcd8d3e89e3f5dd2
 l
 <src/Services/Product.API/Extensions/ApplicationExtensions.cs,b\c\bc49fc1ee864ae94012faf6f40a337c360fc8649
 m
@@ -43,3 +39,11 @@ c
 3src/Services/Product.API/Entities/CatalogProduct.cs,3\9\39fc7d0007b5e36a0279e37bd89e398c93a7ce17
 o
 ?src/BuildingBlocks/Contracts/Domains/Interface/IDateTracking.cs,d\4\d4fa42c8f7b1673524f106cb780514fe6e3b045f
+n
+>src/Services/Product.API/Extensions/ConfigureHostExtensions.cs,b\8\b82e8b04e8cb9cfdc7726f68250e057bbbfa46cb
+O
+src/docker-compose.override.yml,4\0\4019e65c739e63ff256d2cc1d5bf23be4ff96c50
+f
+6src/Services/Product.API/Context/ProductContextSeed.cs,2\4\24c4f363df810379474acf2d0d8d5a77fd296d32
+e
+5src/Services/Product.API/Extensions/HostExtensions.cs,4\8\4818e411d2b3ece3e10d2136bb9bcf75aa7c7b94
