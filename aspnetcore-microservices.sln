@@ -4,6 +4,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		src\docker-compose.yml = src\docker-compose.yml
 		src\docker-compose.override.yml = src\docker-compose.override.yml
+		.dockerignore = .dockerignore
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3622583-5F0C-4533-A9F6-FBE70C2A45E4}"
