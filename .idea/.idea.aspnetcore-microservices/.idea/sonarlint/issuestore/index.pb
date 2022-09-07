@@ -49,8 +49,6 @@ g
 7src/BuildingBlocks/Infrastructure/Infrastructure.csproj,c\8\c8c5010cc290d741d169c7bd8a25fc4c2b659a0e
 f
 6src/BuildingBlocks/Infrastructure/Common/UnitOfWork.cs,2\6\26bc11ce2a04c7cc67b1a227bdaeb41f27297cec
-v
-Fsrc/BuildingBlocks/Contracts/Common/Interfaces/IRepositoryQueryBase.cs,8\7\87670c6fbf352c169e08d2a876d42fc55d71b8dd
 m
 =src/BuildingBlocks/Contracts/Common/Interfaces/IUnitOfWork.cs,1\7\178932205a442efcb8d16d53cff0c83603126088
 g

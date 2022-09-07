@@ -1,6 +1,13 @@
 using Common.Logging;
+using Contracts.Common.Interfaces;
 using Customer.API.Context;
+using Customer.API.Repositories;
+using Customer.API.Repositories.Interfaces;
+using Customer.API.Services;
+using Customer.API.Services.Interfaces;
+using Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
+using Product.API;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,12 +22,30 @@ try
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+    builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingProfile()));
 
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
     builder.Services.AddDbContext<CustomerContext>(
         options => options.UseNpgsql(connectionString));
 
+    builder.Services.AddScoped<ICustomerRepository, CustomerRepository>()
+        .AddScoped(typeof(IRepositoryBaseAsync<,,>), typeof(RepositoryBaseAsync<,,>))
+        .AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>))
+        .AddScoped<ICustomerService, CustomerService>();
+
     var app = builder.Build();
+
+    app.Map("/", () => "Minimum API");
+    app.MapGet("api/customers",
+        async (ICustomerService services) => await services.GetCustomersAsync());
+
+    app.MapGet("api/customers/{username}",
+        async (ICustomerService services, string username) => await services.GetCustomerByUsernameAsync(username));
+
+    app.MapPost("api/customers",
+        async (ICustomerService services, Customer.API.Entities.Customer customer) =>
+            await services.CreateAsync(customer));
+
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
@@ -38,7 +63,7 @@ try
     app.SeedCustomerData()
         .Run();
 }
-catch (Exception e)
+catch (Exception)
 {
     Log.Fatal("Customer API failed to start up");
 }
