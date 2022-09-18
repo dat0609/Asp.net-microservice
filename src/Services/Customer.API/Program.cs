@@ -1,13 +1,14 @@
 using Common.Logging;
 using Contracts.Common.Interfaces;
+using Customer.API;
 using Customer.API.Context;
+using Customer.API.Controllers;
 using Customer.API.Repositories;
 using Customer.API.Repositories.Interfaces;
 using Customer.API.Services;
 using Customer.API.Services.Interfaces;
 using Infrastructure.Common;
 using Microsoft.EntityFrameworkCore;
-using Product.API;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,8 +30,6 @@ try
         options => options.UseNpgsql(connectionString));
 
     builder.Services.AddScoped<ICustomerRepository, CustomerRepository>()
-        .AddScoped(typeof(IRepositoryBaseAsync<,,>), typeof(RepositoryBaseAsync<,,>))
-        .AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>))
         .AddScoped<ICustomerService, CustomerService>();
 
     var app = builder.Build();
@@ -39,12 +38,13 @@ try
     app.MapGet("api/customers",
         async (ICustomerService services) => await services.GetCustomersAsync());
 
-    app.MapGet("api/customers/{username}",
+    /*app.MapGet("api/customers/{username}",
         async (ICustomerService services, string username) => await services.GetCustomerByUsernameAsync(username));
 
     app.MapPost("api/customers",
         async (ICustomerService services, Customer.API.Entities.Customer customer) =>
-            await services.CreateAsync(customer));
+            await services.CreateAsync(customer));*/
+    app.MapCustomersAPI();
 
 
     // Configure the HTTP request pipeline.

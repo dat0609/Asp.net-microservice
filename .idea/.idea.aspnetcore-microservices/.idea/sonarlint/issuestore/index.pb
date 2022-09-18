@@ -61,8 +61,6 @@ b
 2src/BuildingBlocks/Shared/DTOs/UpdateProductDto.cs,9\e\9e3186b40994f5140aeca4599fd96693172f6371
 j
 :src/BuildingBlocks/Shared/DTOs/CreateOrUpdateProductDto.cs,2\2\2235e8405b54343ad66f527c537378fd56159bbf
-Z
-*src/Services/Product.API/MappingProfile.cs,7\d\7d407172b4a6ca198c64fc0bf1508f829b9f1688
 \
 ,src/BuildingBlocks/Shared/DTOs/ProductDto.cs,d\4\d4e2fe2f9bce50e5552fc303793dd893f0a534f4
 ]
@@ -77,7 +75,25 @@ L
 aspnetcore-microservices.sln,6\7\670247c4fb40f05189e3ea830beff72356587f91
 [
 +src/Services/Product.API/Product.API.csproj,3\3\331f0b265295b87cf0d43d9b1180e0661071d639
+d
+4src/Services/Customer.API/Context/CustomerContext.cs,2\9\29e702a468240126b1e16b34c22bb246a7ee8bc8
+^
+.src/Services/Customer.API/Entities/Customer.cs,5\8\583f775a16687579a4b8afedd6ca001d73bc48cb
+o
+?src/BuildingBlocks/Infrastructure/Common/RepositoryBaseAsync.cs,d\0\d0a1142066e53260e7d8b1d8be3ac41d212372c0
+h
+8src/Services/Customer.API/Context/CustomerContextSeed.cs,7\9\79df44c0e912c849f997bd0de0be21a1044a727e
+h
+8src/Services/Product.API/Extensions/ServiceExtensions.cs,d\b\db71bd8046d6278e126f2ecb2c36f4765bc2af66
+j
+:src/Services/Product.API/Repositories/ProductRepository.cs,1\4\1475c0bed4e14ad806f1570956a9887b2ff8c331
+v
+Fsrc/BuildingBlocks/Contracts/Common/Interfaces/IRepositoryQueryBase.cs,8\7\87670c6fbf352c169e08d2a876d42fc55d71b8dd
+h
+8src/Services/Customer.API/Properties/launchSettings.json,b\a\bad4ffb309bb76f0b3fd8b143d79241e19862383
+Z
+*src/Services/Customer.API/appsettings.json,b\f\bfec5df200bfd0a9caf3b065eb46c9243d38a795
+Z
+*src/Services/Product.API/MappingProfile.cs,7\d\7d407172b4a6ca198c64fc0bf1508f829b9f1688
 S
 #src/Services/Product.API/Dockerfile,4\a\4aad36e23ec6199447f7e9983999aa24221455e2
-F
-src/docker-compose.yml,b\6\b6d47bf403e6132308330a3022bdaabcbc5e32b8

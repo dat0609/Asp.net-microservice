@@ -16,11 +16,5 @@ public class CustomerService : ICustomerService
         => Results.Ok(await _customerRepository.GetCustomerByUsername(username));
 
     public async Task<IResult> GetCustomersAsync() => Results.Ok(await _customerRepository.GetCustomersAsync());
-    public async Task<int> CreateAsync(Entities.Customer customer)
-    {
-        var result = await _customerRepository.CreateAsync(customer);
-        await _customerRepository.SaveChangesAsync();
 
-        return result;
-    }
 }
