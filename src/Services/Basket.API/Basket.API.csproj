@@ -7,11 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Redi.StackExchangeRedis.Cache.Extension" Version="1.5.3" />
+        <PackageReference Include="StackExchange.Redis" Version="2.6.66" />
+        <PackageReference Include="StackExchange.Redis.Extensions.Core" Version="8.0.5" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\..\BuildingBlocks\Common.Logging\Common.Logging.csproj" />
+      <ProjectReference Include="..\..\BuildingBlocks\Contracts\Contracts.csproj" />
+      <ProjectReference Include="..\..\BuildingBlocks\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

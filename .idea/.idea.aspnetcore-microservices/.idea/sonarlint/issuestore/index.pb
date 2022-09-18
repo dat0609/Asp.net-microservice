@@ -1,8 +1,6 @@
 
 _
 /src/BuildingBlocks/Common.Logging/Serilogger.cs,9\2\928c4d7c8b565ce5816b2062918599e6eecf25f2
-R
-"src/Services/Basket.API/Program.cs,a\6\a6daf5010718a139a4236eb1b82c009004365c0e
 q
 Asrc/Services/Inventory.Customer.API/Inventory.Customer.API.csproj,a\3\a30ea5d6733e626d180c34178614fd7aa9dfd7ab
 ^
@@ -11,8 +9,6 @@ T
 $src/Services/Ordering.API/Program.cs,5\2\52bd90facb5db5c44d119d28b4ad0f59f46076fa
 d
 4src/Services/Basket.API/appsettings.Development.json,7\1\717b13c6af458770885ec06a76672d315216228d
-X
-(src/Services/Basket.API/appsettings.json,0\7\072d598353b80cc8955e011f6e3533a0f5a5f082
 d
 4src/Services/Inventory.Customer.API/appsettings.json,2\a\2adefe79cca90027745ad4715973ef29e1901a58
 Z
@@ -45,8 +41,6 @@ v
 Fsrc/Services/Product.API/Repositories/Interfaces/IProductRepository.cs,d\d\dd1f989e7d789af04c73a153a81bdfd9a52a6fc8
 j
 :src/Services/Product.API/Controllers/ProductsController.cs,f\a\fa4ade4d358febd6772c4a224967334b07106dbc
-g
-7src/BuildingBlocks/Infrastructure/Infrastructure.csproj,c\8\c8c5010cc290d741d169c7bd8a25fc4c2b659a0e
 f
 6src/BuildingBlocks/Infrastructure/Common/UnitOfWork.cs,2\6\26bc11ce2a04c7cc67b1a227bdaeb41f27297cec
 m
