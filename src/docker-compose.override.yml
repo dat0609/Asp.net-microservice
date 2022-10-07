@@ -13,7 +13,7 @@ services:
     volumes:
       - sqlserver_data:/var/lib/sqlserver/data
     ports:
-      - "1433:1433"
+      - "1435:1433"
 
   #productdb: mysql
   productdb:
