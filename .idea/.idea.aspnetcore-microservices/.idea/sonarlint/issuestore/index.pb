@@ -153,8 +153,6 @@ n
 >src/BuildingBlocks/Infrastructure/Services/SmtpEmailService.cs,d\2\d2b3a53486bbb4480dd252847def56ad3201ce2a
 r
 Bsrc/Services/Ordering/Ordering.API/Extensions/ServiceExtensions.cs,a\4\a4a7235c7b13da73ed54cad9d7fffa9b647cdfa9
-„
-Tsrc/Services/Ordering/Ordering.Application/Common/Behaviours/PerformanceBehaviour.cs,4\9\49926b5bc926225f3d59b92d7ebe8ccdc1128cdb
 €
 Psrc/Services/Ordering/Ordering.Application/Common/Interfaces/IOrderRepository.cs,1\0\10c2bda02d63890834914edc160c1305b63775dd
 f
