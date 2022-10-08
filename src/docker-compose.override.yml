@@ -136,9 +136,21 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - "ConnectionStrings:DefaultConnectionString=basketdb:6379"
+      - "CacheSettings:ConnectionString=basketdb:6379"
     depends_on:
         - basketdb
     ports:
       - "6004:80"
+    restart: always
+
+  order.api:
+    container_name: order.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - "ConnectionStrings:DefaultConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=Passw0rd!;Multipleactiveresultsets=true"
+    depends_on:
+      - orderdb
+    ports:
+      - "6005:80"
     restart: always

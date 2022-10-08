@@ -147,8 +147,6 @@ f
 6src/Services/Ordering/Ordering.API/Ordering.API.csproj,2\b\2b107d1f0a2689c05d412b1b75e92e66bb1b807d
 l
 <src/Services/Ordering/Ordering.Domain/Ordering.Domain.csproj,f\7\f76341df67691af599d7c0a0d1432ef25fbbf0db
-F
-src/docker-compose.yml,b\6\b6d47bf403e6132308330a3022bdaabcbc5e32b8
 }
 Msrc/Services/Ordering/Ordering.Infrastructure/Persistence/OrderContextSeed.cs,f\e\fe024d1ff473d92553366a80be10c140e5c0dfaa
 k
@@ -161,8 +159,6 @@ v
 Fsrc/BuildingBlocks/Contracts/Common/Interfaces/IRepositoryQueryBase.cs,8\7\87670c6fbf352c169e08d2a876d42fc55d71b8dd
 W
 'src/BuildingBlocks/Shared/Shared.csproj,a\6\a6566e3d72dddf87d45808f6b6a4b4984f48b9bd
-O
-src/docker-compose.override.yml,4\0\4019e65c739e63ff256d2cc1d5bf23be4ff96c50
 ]
 -src/BuildingBlocks/Contracts/Contracts.csproj,a\7\a7faf7a69d295f8f6f99f9153e748839744d8663
 „
