@@ -18,7 +18,7 @@ try
 {
     // Add services to the container.
     builder.Host.AddAppConfigurations();
-    //builder.Services.AddConfigurationSettings(builder.Configuration);
+    builder.Services.AddConfigurationSettings(builder.Configuration);
     builder.Services.AddApplicationServices();
     builder.Services.AddInfrastructureServices(builder.Configuration);
 

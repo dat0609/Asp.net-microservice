@@ -29,7 +29,7 @@ public static class ConfigureServices
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
-        //services.AddScoped(typeof(ISmtpEmailService), typeof(SmtpEmailService));
+        services.AddScoped(typeof(ISmtpEmailService), typeof(SmtpEmailService));
 
         return services;
     }

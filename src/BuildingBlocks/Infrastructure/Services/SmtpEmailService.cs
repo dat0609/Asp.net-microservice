@@ -20,7 +20,7 @@ public class SmtpEmailService : ISmtpEmailService
         _smtpClient = new SmtpClient();
     }
 
-    public async Task SendEmailAsync(MailRequest request, CancellationToken cancellationToken = new CancellationToken())
+    public async Task SendEmailAsync(MailRequest request, CancellationToken cancellationToken = new ())
     {
         var emailMessage = new MimeMessage
         {

@@ -2,7 +2,7 @@ using Contracts.Configurations;
 
 namespace Infrastructure.Configurations;
 
-public interface SMTPEmailSetting: IEmailSMTPSettings
+public class SMTPEmailSetting: IEmailSMTPSettings
 {
     public string DisplayName { get; set; }
     public bool EnableVerification { get; set; }
