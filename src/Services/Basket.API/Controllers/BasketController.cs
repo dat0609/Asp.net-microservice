@@ -1,7 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using AutoMapper;
 using Basket.API.Entities;
 using Basket.API.Repositories.Interfaces;
+using EventBus.Messages.IntegrationEvents.Events;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 
@@ -12,10 +15,14 @@ namespace Basket.API.Controllers;
 public class BasketController : ControllerBase
 {
     private readonly IBasketRepository _basketRepository;
+    private readonly IPublishEndpoint _publishEndpoint;
+    private readonly IMapper _mapper;
 
-    public BasketController(IBasketRepository basketRepository)
+    public BasketController(IBasketRepository basketRepository, IPublishEndpoint publishEndpoint, IMapper mapper)
     {
         _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
+        _publishEndpoint = publishEndpoint;
+        _mapper = mapper;
     }
 
     [HttpGet("{userName}", Name = "GetBasket")]
@@ -46,6 +53,27 @@ public class BasketController : ControllerBase
     public async Task<IActionResult> DeleteBasket([Required]string userName)
     {
         await _basketRepository.DeleteBasketFromUserName(userName);
+        return Accepted();
+    }
+
+    [Route("[action]/{username}")]
+    [HttpPost]
+    [ProducesResponseType((int)HttpStatusCode.Accepted)]
+    [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+    public async Task<IActionResult> Checkout([Required] string username, [FromBody] BasketCheckout basketCheckout)
+    {
+        var basket = await _basketRepository.GetBasketByUserName(username);
+        if (basket == null || !basket.Items.Any()) return NotFound();
+
+        var eventMessage = _mapper.Map<BasketCheckoutEvent>(basketCheckout);
+
+        eventMessage.TotalPrice = basket.TotalPrice;
+        //publish checkout event to EventBus Message
+        await _publishEndpoint.Publish(eventMessage);
+
+        //remove the basket
+        await _basketRepository.DeleteBasketFromUserName(basket.UserName);
+
         return Accepted();
     }
 }

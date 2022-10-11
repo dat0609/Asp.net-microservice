@@ -1,3 +1,4 @@
+using Basket.API;
 using Basket.API.Extensions;
 using Common.Logging;
 using Serilog;
@@ -11,7 +12,12 @@ try
 {
     builder.Host.UseSerilog(Serilogger.Configure);
     builder.Services.ConfigureServices();
+    builder.Services.AddAutoMapper(x => x.AddProfile(new MappingProfile()));
+    builder.Services.AddConfigurationSettings(builder.Configuration);
     builder.Services.ConfigureRedis(builder.Configuration);
+
+    // config mass transit
+    builder.Services.ConfigureMassTransit();
 
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
