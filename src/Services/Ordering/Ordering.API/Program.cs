@@ -1,4 +1,5 @@
 using Common.Logging;
+using Ordering.API.Application.IntegrationEvents.EventHandler;
 using Ordering.API.Extensions;
 using Ordering.Application;
 using Ordering.Infrastructure;
@@ -21,6 +22,7 @@ try
     builder.Services.AddConfigurationSettings(builder.Configuration);
     builder.Services.AddApplicationServices();
     builder.Services.AddInfrastructureServices(builder.Configuration);
+    builder.Services.ConfigureMassTransit();
 
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -34,8 +36,8 @@ try
     {
         app.UseSwagger();
         app.UseSwaggerUI(c =>
-            c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                "Swagger Order API v1"));
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "Swagger Order API v1"));
     }
 
     // Initialise and seed database

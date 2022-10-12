@@ -4,7 +4,6 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Ordering.Application.Common.Models;
 using Ordering.Application.Features.V1.Orders;
-using Ordering.Application.Features.V1.Orders.Queries.GetOrders;
 
 namespace Ordering.API.Controllers;
 
