@@ -31,4 +31,10 @@ public class OrdersController : ControllerBase
         var result = await _mediator.Send(query);
         return Ok(result);
     }
+
+    [HttpGet("demo")]
+    public async Task<IActionResult> Demo()
+    {
+        return Ok("api is working");
+    }
 }

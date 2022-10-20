@@ -25,6 +25,12 @@ public class BasketController : ControllerBase
         _mapper = mapper;
     }
 
+    [HttpGet("demo")]
+    public async Task<IActionResult> Demo()
+    {
+        return Ok("api is working");
+    }
+
     [HttpGet("{userName}", Name = "GetBasket")]
     [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<Cart>> GetBasket([Required]string userName)
