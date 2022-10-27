@@ -1,4 +1,5 @@
 using Common.Logging;
+using Inventory.Customer.API.Extension;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,9 @@ try
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+    builder.Services.AddInfrastructureServices();
+    builder.Services.AddConfigurationSettings(builder.Configuration);
+    builder.Services.ConfigureMongoDbClient();
 
     var app = builder.Build();
 
@@ -23,13 +27,14 @@ try
         app.UseSwaggerUI();
     }
 
-    app.UseHttpsRedirection();
+    //app.UseHttpsRedirection();
 
     app.UseAuthorization();
 
-    app.MapControllers();
+    app.MapDefaultControllerRoute();
 
-    app.Run();
+    app.MigrateDatabase()
+        .Run();
 }
 catch (Exception e)
 {

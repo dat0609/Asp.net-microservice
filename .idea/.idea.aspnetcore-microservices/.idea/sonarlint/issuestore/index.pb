@@ -1,12 +1,6 @@
 
 _
 /src/BuildingBlocks/Common.Logging/Serilogger.cs,9\2\928c4d7c8b565ce5816b2062918599e6eecf25f2
-q
-Asrc/Services/Inventory.Customer.API/Inventory.Customer.API.csproj,a\3\a30ea5d6733e626d180c34178614fd7aa9dfd7ab
-^
-.src/Services/Inventory.Customer.API/Program.cs,d\7\d7a10871bbe28b3d6a95898f1b3cecfe91590541
-d
-4src/Services/Inventory.Customer.API/appsettings.json,2\a\2adefe79cca90027745ad4715973ef29e1901a58
 l
 <src/Services/Product.API/Extensions/ApplicationExtensions.cs,b\c\bc49fc1ee864ae94012faf6f40a337c360fc8649
 m
@@ -103,8 +97,6 @@ t
 Dsrc/BuildingBlocks/Contracts/Common/Interfaces/ISerializerService.cs,7\5\758dbb46c2f1f65abd7f58db58a682621c4e6907
 h
 8src/Services/Basket.API/Repositories/BasketRepository.cs,f\7\f78ba9ed68f753d7571b9d088aaa9f8dbd83ffb1
-d
-4src/Services/Basket.API/Extensions/HostExtensions.cs,0\c\0c4b0d89568b86013f13ece2a92b0889bf228670
 U
 %src/Services/Basket.API/.dockerignore,5\9\595b8ccc826cbc7a08d6daec0546f14a291c8cd2
 ~
@@ -147,8 +139,6 @@ u
 Esrc/BuildingBlocks/EventBus/EventBus.Messages/IntegrationBaseEvent.cs,9\8\98c6543e478ac0ab14d8891df051324971c6e6b7
 f
 6src/BuildingBlocks/Shared/SeedWork/ApiSuccessResult.cs,f\5\f541f635fba150cf309973e5847ba9bcc9163d00
-_
-/src/BuildingBlocks/Shared/SeedWork/ApiResult.cs,4\5\455bd7949fb573b79b46aa90c2a2112c0b62eb2d
 o
 ?src/Services/Ordering/Ordering.API/appsettings.Development.json,8\8\8850a94050ac2c11e976d4d4a1590d4e5a692845
 v
@@ -215,8 +205,6 @@ d
 _src/Services/Ordering/Ordering.Application/Features/V1/Orders/Common/CreateOrUpdateValidator.cs,6\d\6da98f442d298425d70783d54e50ae52edf5fb87
 =
 .dockerignore,0\5\05a721ebe3ba0754116825ed1359ff1785f4bbac
-g
-7src/Services/Basket.API/Extensions/ServiceExtensions.cs,6\3\63b317fbc99383ada96de49a938b8a176edc54b3
 X
 (src/Services/Basket.API/appsettings.json,0\7\072d598353b80cc8955e011f6e3533a0f5a5f082
 c
@@ -255,7 +243,5 @@ n
 -src/Services/Ordering/Ordering.API/Dockerfile,9\9\99980d9f530cd5e941d3b8735db5d66615b48eef
 R
 "src/Services/Basket.API/Dockerfile,6\f\6f6197bcfcb53771a079b1729c93be4daec052bd
-g
-7src/Services/Ordering/Ordering.Domain/Entities/Order.cs,8\3\839e36d398e58a0c21083862072057a831601555
 ]
 -src/BuildingBlocks/Contracts/Contracts.csproj,a\7\a7faf7a69d295f8f6f99f9153e748839744d8663
