@@ -115,8 +115,6 @@ l
 Msrc/Services/Ordering/Ordering.Infrastructure/Persistence/OrderContextSeed.cs,f\e\fe024d1ff473d92553366a80be10c140e5c0dfaa
 k
 ;src/Services/Ordering/Ordering.Domain/Enums/EOrderStatus.cs,f\8\f8d834d3dfa8e2abdddf9373100dc10c864e4919
-W
-'src/BuildingBlocks/Shared/Shared.csproj,a\6\a6566e3d72dddf87d45808f6b6a4b4984f48b9bd
 ‘
 asrc/Services/Ordering/Ordering.Application/Features/V1/Orders/Queries/GetOrders/GetOrdersQuery.cs,d\d\ddb7a8ad9263bd30257795132d076f82930f7f3c
 ˜
@@ -125,8 +123,6 @@ d
 4src/BuildingBlocks/Shared/SeedWork/ApiErrorResult.cs,8\5\85c31445ede1adf3e62a7b0a7e2debff3576b070
 Y
 )src/Services/Basket.API/MappingProfile.cs,8\0\80b5d6864e78e9b8622543138cc7015e0617ddd8
-g
-7src/BuildingBlocks/Infrastructure/Infrastructure.csproj,c\8\c8c5010cc290d741d169c7bd8a25fc4c2b659a0e
 w
 Gsrc/BuildingBlocks/Infrastructure/Extensions/ConfigurationExtensions.cs,e\e\ee39a5f33de719bf0e8d40d11a817dd25d20d0b3
 ’
