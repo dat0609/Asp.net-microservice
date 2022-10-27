@@ -1,8 +1,10 @@
+using Contracts.Common.Event;
 using Contracts.Common.Interfaces;
 using Contracts.Configurations;
 using Contracts.Services;
 using Infrastructure.Common;
 using Infrastructure.Configurations;
+using Infrastructure.Extensions;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

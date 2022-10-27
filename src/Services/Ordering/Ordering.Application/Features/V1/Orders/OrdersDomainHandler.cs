@@ -1,4 +1,4 @@
-/*using Contracts.Services;
+using Contracts.Services;
 using MediatR;
 using Ordering.Domain.OrderAggregate.Events;
 using Serilog;
@@ -25,9 +25,8 @@ public class OrdersDomainHandler :
         {
             ToAddress = notification.EmailAddress,
             Body = $"Your order detail. " +
-                   $"<p> Order Id: {notification.DocumentNo}</p>" +
                    $"<p> Total: {notification.TotalPrice}</p>",
-            Subject = $"Hello {notification.FullName}, your order was created"
+            Subject = $"Hello {notification.EmailAddress}, your order was created"
         };
 
         try
@@ -48,4 +47,4 @@ public class OrdersDomainHandler :
         _logger.Information("Ordering Domain Event: {DomainEvent}", notification.GetType().Name);
         return Task.CompletedTask;
     }
-}*/
+}
