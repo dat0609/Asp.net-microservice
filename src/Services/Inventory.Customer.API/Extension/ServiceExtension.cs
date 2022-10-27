@@ -1,4 +1,6 @@
 using Infrastructure.Extensions;
+using Inventory.Customer.API.Services;
+using Inventory.Customer.API.Services.Interface;
 using MongoDB.Driver;
 
 namespace Inventory.Customer.API.Extension;
@@ -17,6 +19,7 @@ public static class ServiceExtension
     public static void AddInfrastructureServices(this IServiceCollection services)
     {
         services.AddAutoMapper(x => x.AddProfile(new MappingProfile()));
+        services.AddScoped<IInventoryService, InventoryService>();
     }
 
     public static void ConfigureMongoDbClient(this IServiceCollection services)
