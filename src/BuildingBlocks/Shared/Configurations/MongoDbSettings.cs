@@ -1,6 +1,4 @@
-using Shared.Configurations;
-
-namespace Inventory.Customer.API.Extension;
+namespace Shared.Configurations;
 
 public class MongoDbSettings : DatabaseSettings
 {

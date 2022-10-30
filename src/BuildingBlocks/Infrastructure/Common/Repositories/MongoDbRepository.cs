@@ -1,9 +1,10 @@
-using System.Reflection;
-using Inventory.Customer.API.Entities.Abstraction;
-using Inventory.Customer.API.Extension;
+using Contracts.Domains;
+using Contracts.Domains.Interface;
+using Infrastructure.Extensions;
 using MongoDB.Driver;
+using Shared.Configurations;
 
-namespace Inventory.Customer.API.Repositories.Abstraction;
+namespace Infrastructure.Common.Repositories;
 
 public class MongoDbRepository<T> : IMongoDbRepositoryBase<T> where T : MongoEntity
 {

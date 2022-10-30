@@ -1,4 +1,4 @@
-namespace Inventory.Customer.API.Extension;
+namespace Infrastructure.Extensions;
 
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public class BsonCollection : Attribute

@@ -1,11 +1,12 @@
 using AutoMapper;
+using Infrastructure.Common.Repositories;
 using Infrastructure.Extensions;
 using Inventory.Customer.API.Entities;
 using Inventory.Customer.API.Extension;
-using Inventory.Customer.API.Repositories.Abstraction;
 using Inventory.Customer.API.Services.Interface;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Shared.Configurations;
 using Shared.DTOs;
 using Shared.SeedWork;
 

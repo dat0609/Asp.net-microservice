@@ -2,6 +2,7 @@ using Infrastructure.Extensions;
 using Inventory.Customer.API.Services;
 using Inventory.Customer.API.Services.Interface;
 using MongoDB.Driver;
+using Shared.Configurations;
 
 namespace Inventory.Customer.API.Extension;
 

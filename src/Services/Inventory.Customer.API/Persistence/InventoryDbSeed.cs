@@ -1,6 +1,7 @@
 using Inventory.Customer.API.Entities;
 using Inventory.Customer.API.Extension;
 using MongoDB.Driver;
+using Shared.Configurations;
 using Shared.Enum.Inventory;
 
 namespace Inventory.Customer.API.Persistence;
