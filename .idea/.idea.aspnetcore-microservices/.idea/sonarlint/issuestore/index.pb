@@ -147,8 +147,6 @@ o
 ?src/Services/Ordering/Ordering.API/Extensions/HostExtensions.cs,7\f\7f3abc4d2dd78d9ad20496c7b28b79f037cb825c
 
 ]src/BuildingBlocks/EventBus/EventBus.Messages/IntegrationEvents/Events/BasketCheckoutEvent.cs,e\6\e69cb7d2b9e3c71f34d2b13f0aeecd18142a3c13
-Y
-)src/Services/Basket.API/Basket.API.csproj,2\8\28e66b79dc13e879fe1ec74667b3bc3b08771a46
 q
 Asrc/Services/Ordering/Ordering.API/Properties/launchSettings.json,5\0\505e4f6e58b265d2fdc57930f02016765dec7c9f
 t
@@ -191,8 +189,6 @@ b
 ksrc/Services/Ordering/Ordering.API/Application/IntegrationEvents/EventHandler/BasketCheckoutEventHandler.cs,a\0\a055f77dc0130123ad2f418953018ddbf325a3bf
 ž
 nsrc/Services/Ordering/Ordering.Application/Features/V1/Orders/Queries/GetOrderById/GetOrderByIdQueryHandler.cs,9\0\90b6b29555e9d8891d456eb7189f337bc304c02b
-R
-"src/Services/Basket.API/Program.cs,a\6\a6daf5010718a139a4236eb1b82c009004365c0e
 f
 6src/Services/Basket.API/Properties/launchSettings.json,0\b\0bc8c5007da3cd1f9e2a526dc93178eb1c173317
 d
@@ -201,8 +197,6 @@ d
 _src/Services/Ordering/Ordering.Application/Features/V1/Orders/Common/CreateOrUpdateValidator.cs,6\d\6da98f442d298425d70783d54e50ae52edf5fb87
 =
 .dockerignore,0\5\05a721ebe3ba0754116825ed1359ff1785f4bbac
-X
-(src/Services/Basket.API/appsettings.json,0\7\072d598353b80cc8955e011f6e3533a0f5a5f082
 c
 3src/Services/Ordering/Ordering.API/appsettings.json,3\7\3716dfb415c87fa152ae81fe392c183a20099c81
 F
@@ -241,8 +235,6 @@ R
 "src/Services/Basket.API/Dockerfile,6\f\6f6197bcfcb53771a079b1729c93be4daec052bd
 ]
 -src/BuildingBlocks/Contracts/Contracts.csproj,a\7\a7faf7a69d295f8f6f99f9153e748839744d8663
-g
-7src/Services/Basket.API/Controllers/BasketController.cs,1\8\181bddc23356fc2dc049921d7c4ebe67dd019d44
 ƒ
 Ssrc/Services/Ordering/Ordering.Application/Common/Behaviours/ValidationBehaviour.cs,a\1\a1dd85cb51ecd855a46bc5fe34bd253a1b867de8
 Ÿ
@@ -271,8 +263,6 @@ _
 /src/BuildingBlocks/Shared/SeedWork/ApiResult.cs,4\5\455bd7949fb573b79b46aa90c2a2112c0b62eb2d
 d
 4src/Services/Basket.API/Extensions/HostExtensions.cs,0\c\0c4b0d89568b86013f13ece2a92b0889bf228670
-g
-7src/Services/Basket.API/Extensions/ServiceExtensions.cs,6\3\63b317fbc99383ada96de49a938b8a176edc54b3
 c
 3src/BuildingBlocks/Shared/DTOs/InventoryEntryDto.cs,e\f\ef9f84799efe100c48676ffdf596c4c441dd81f6
 d
@@ -307,3 +297,27 @@ _
 /src/BuildingBlocks/Shared/SeedWork/PagedList.cs,e\c\ecf64f7fc28adbac7c3a79834857fb0653166bce
 g
 7src/BuildingBlocks/Common.Logging/Common.Logging.csproj,c\9\c95863dc6df29a62e1101e807fd1a3ac9837a3f7
+r
+Bsrc/Services/Inventory.Customer.API/Persistence/InventoryDbSeed.cs,3\4\3496881894326fa160190f1c51005991851a0cf5
+c
+3src/BuildingBlocks/Contracts/Domains/MongoEntity.cs,b\b\bb05a1a3443deb2bc2cdcdf4c538b0806e80f354
+z
+Jsrc/BuildingBlocks/Infrastructure/Common/Repositories/MongoDbRepository.cs,a\5\a5819f0e5e1513d0ac2f4d8d87f4484e5d74e5c6
+n
+>src/Services/Inventory.Customer.API/Extension/HostExtension.cs,3\9\3938c3bdd6eb5a761f8ee2659d1334c699e36dc8
+x
+Hsrc/BuildingBlocks/Contracts/Domains/Interface/IMongoDbRepositoryBase.cs,9\c\9cd53357c9f62b65b8b39e003767ce5059e2fccb
+n
+>src/BuildingBlocks/Infrastructure/Extensions/BsonCollection.cs,0\d\0d8d102ec8ea091f8c36997741c0b88c8acfd929
+{
+Ksrc/Services/Inventory.Customer.API/Services/Interface/IInventoryService.cs,8\4\84d1ce3110162b5f029336ab36ca922a763cf1f4
+n
+>src/Services/Inventory.Customer.API/Entities/InventoryEntry.cs,4\1\41bf7c811cb643a7d0d5bc52128701e64b9788a2
+p
+@src/Services/Inventory.Customer.API/Services/InventoryService.cs,b\a\bafa7c0adb2391493fb759339563abbdcb5abdee
+d
+4src/Services/Inventory.Customer.API/appsettings.json,2\a\2adefe79cca90027745ad4715973ef29e1901a58
+q
+Asrc/Services/Inventory.Customer.API/Extension/ServiceExtension.cs,3\5\359b5a33bb4c39ff33f915dfb84e10b817a637c3
+k
+;src/BuildingBlocks/Shared/Configurations/MongoDbSettings.cs,d\6\d67ad00a6fa832fedfad25dcbe555a9bb54e64cd

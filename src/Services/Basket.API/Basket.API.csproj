@@ -9,6 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.49.0" />
         <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.7" />
         <PackageReference Include="Redi.StackExchangeRedis.Cache.Extension" Version="1.5.3" />
         <PackageReference Include="StackExchange.Redis" Version="2.6.66" />
@@ -21,6 +22,12 @@
       <ProjectReference Include="..\..\BuildingBlocks\Contracts\Contracts.csproj" />
       <ProjectReference Include="..\..\BuildingBlocks\EventBus\EventBus.Messages\EventBus.Messages.csproj" />
       <ProjectReference Include="..\..\BuildingBlocks\Infrastructure\Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Protobuf Include="Protos\stock.proto" GrpcService="Client">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Protobuf>
     </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Net;
 using AutoMapper;
 using Basket.API.Entities;
+using Basket.API.GrpcService;
 using Basket.API.Repositories.Interfaces;
 using EventBus.Messages.IntegrationEvents.Events;
 using MassTransit;
@@ -17,12 +18,14 @@ public class BasketController : ControllerBase
     private readonly IBasketRepository _basketRepository;
     private readonly IPublishEndpoint _publishEndpoint;
     private readonly IMapper _mapper;
+    private readonly StockItemGrpcService _stockItemGrpcServiceProvider;
 
-    public BasketController(IBasketRepository basketRepository, IPublishEndpoint publishEndpoint, IMapper mapper)
+    public BasketController(IBasketRepository basketRepository, IPublishEndpoint publishEndpoint, IMapper mapper, StockItemGrpcService stockItemGrpcServiceProvider)
     {
         _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
         _publishEndpoint = publishEndpoint;
         _mapper = mapper;
+        _stockItemGrpcServiceProvider = stockItemGrpcServiceProvider;
     }
 
     [HttpGet("demo")]
@@ -43,6 +46,12 @@ public class BasketController : ControllerBase
     [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<Cart>> UpdateBasket([FromBody] Cart basket)
     {
+        // Communicate with Inventory.grpc and check if the requested quantity of product is available
+        foreach (var cart in basket.Items)
+        {
+            var stock = await _stockItemGrpcServiceProvider.GetStock(cart.ItemNo);
+            cart.SetAvailableQuantity(stock.Quantity);
+        }
         var options = new DistributedCacheEntryOptions()
             //set the absolute expiration time.
             .SetAbsoluteExpiration(DateTime.UtcNow.AddMinutes(10))

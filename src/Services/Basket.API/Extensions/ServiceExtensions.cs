@@ -1,9 +1,11 @@
+using Basket.API.GrpcService;
 using Basket.API.Repositories;
 using Basket.API.Repositories.Interfaces;
 using Contracts.Common.Interfaces;
 using EventBus.Messages.IntegrationEvents.Interfaces;
 using Infrastructure.Common;
 using Infrastructure.Extensions;
+using Inventory.Grpc.Protos;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Shared.Configurations;
@@ -18,7 +20,15 @@ public static class ServiceExtensions
         var eventBus = configuration.GetSection(nameof(EventBusSettings))
             .Get<EventBusSettings>();
         services.AddSingleton(eventBus);
+        
+        var cacheSetting = configuration.GetSection(nameof(CacheSettings))
+            .Get<CacheSettings>();
+        services.AddSingleton(cacheSetting);
 
+        var grpcSetting = configuration.GetSection(nameof(GrpcSettings))
+            .Get<GrpcSettings>();
+        services.AddSingleton(grpcSetting);
+        
         return services;
     }
 
@@ -56,5 +66,18 @@ public static class ServiceExtensions
             // publish integration events
             x.AddRequestClient<IBasketCheckoutEvent>();
         });
+    }
+    
+    public static IServiceCollection ConfigureGrpcServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        var setting = services.GetOption<GrpcSettings>(nameof(GrpcSettings));
+        
+        services.AddGrpcClient<StockProtoService.StockProtoServiceClient>(options =>
+        {
+            options.Address = new Uri(setting.StockUrl);
+        });
+        services.AddScoped<StockItemGrpcService>();
+        
+        return services;
     }
 }
