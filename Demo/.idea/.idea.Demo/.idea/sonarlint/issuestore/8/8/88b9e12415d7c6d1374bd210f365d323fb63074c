@@ -1,9 +1,0 @@
-
-vcsharpsquid:S3776S"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(æãá8Ÿöú„Ğ0
-hcsharpsquid:S3010"?Remove this assignment of '_hehe2' or initialize it statically.(–ÄÙ§ÿÿÿÿÿ8œèª«Ğ0
-ycsharpsquid:S4487"PRemove this unread private field '_hehe2' or refactor the code to use its value.(éûÈôıÿÿÿÿ8 ‚•´Ğ0
-Ucsharpsquid:S1481î"0Remove the unused local variable 'standardList'.(´¢ÛÏ8¡‚•´Ğ0
-_csharpsquid:S1481õ";Remove the unused local variable 'studentsGroupByStandard'.(”±Âq8€‡¶Ğ0
-fcsharpsquid:S1481ú"<Remove the unused local variable 'studentsGroupByStandard2'.(òü•Âıÿÿÿÿ8€‡¶Ğ0
-Mcsharpsquid:S1481ƒ"(Remove the unused local variable 'demo'.(õúîê8ˆ¾ÌÕĞ0
-Ccsharpsquid:S125†"Remove this commented out code.(š¤ƒá8¡öú„Ğ0
