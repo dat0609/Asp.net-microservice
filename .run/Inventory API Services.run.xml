@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Inventory API Services" type="CompoundRunConfigurationType">
+    <toRun name="Basket.API" type="LaunchSettings" />
+    <toRun name="Inventory.Customer.API" type="LaunchSettings" />
+    <toRun name="Inventory.Grpc" type="LaunchSettings" />
+    <method v="2" />
+  </configuration>
+</component>

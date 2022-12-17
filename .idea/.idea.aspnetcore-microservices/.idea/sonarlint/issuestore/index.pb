@@ -75,8 +75,6 @@ e
 5src/Services/Customer.API/Services/CustomerService.cs,8\d\8d37c111bc4debd98ec4670b9e70429691071dd5
 q
 Asrc/Services/Customer.API/Services/Interfaces/ICustomerService.cs,8\4\84eec142292fc76172068ca03fb1228cfae13488
-T
-$src/Services/Customer.API/Program.cs,7\d\7d19d73faaf2666603649a2abdf2664ace829509
 ]
 -src/Services/Customer.API/Customer.API.csproj,0\6\068ecdfee1509194e19ae80da30edc7608d413f5
 l
@@ -243,8 +241,6 @@ q
 Asrc/BuildingBlocks/Infrastructure/Extensions/MediatorExtension.cs,5\6\5651c4a33e283cf786dc3b0476c7e6eafd25503a
 _
 /src/BuildingBlocks/Shared/SeedWork/ApiResult.cs,4\5\455bd7949fb573b79b46aa90c2a2112c0b62eb2d
-d
-4src/Services/Basket.API/Extensions/HostExtensions.cs,0\c\0c4b0d89568b86013f13ece2a92b0889bf228670
 c
 3src/BuildingBlocks/Shared/DTOs/InventoryEntryDto.cs,e\f\ef9f84799efe100c48676ffdf596c4c441dd81f6
 d
@@ -285,12 +281,8 @@ Y
 )src/Services/Basket.API/Basket.API.csproj,2\8\28e66b79dc13e879fe1ec74667b3bc3b08771a46
 X
 (src/Services/Basket.API/Entities/Cart.cs,9\4\9496a053b3bd7fc24446019afdaa3c759c5d9382
-R
-"src/Services/Basket.API/Program.cs,a\6\a6daf5010718a139a4236eb1b82c009004365c0e
 \
 ,src/Services/Basket.API/Entities/CartItem.cs,8\e\8ecfb11532a9ca7b36aa9b52ce67d52435c5ff02
-g
-7src/Services/Basket.API/Extensions/ServiceExtensions.cs,6\3\63b317fbc99383ada96de49a938b8a176edc54b3
 t
 Dsrc/Services/Basket.API/Repositories/Interfaces/IBasketRepository.cs,5\9\5958a1327e7b736a814a0f582d7e146f7a1d77bb
 k
@@ -299,5 +291,3 @@ h
 8src/Services/Basket.API/Repositories/BasketRepository.cs,f\7\f78ba9ed68f753d7571b9d088aaa9f8dbd83ffb1
 j
 :src/BuildingBlocks/Infrastructure/Common/RepositoryBase.cs,8\9\89f52813310b0435e356da7cc40a7bee443c8553
-X
-(src/Services/Basket.API/appsettings.json,0\7\072d598353b80cc8955e011f6e3533a0f5a5f082
