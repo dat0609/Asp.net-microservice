@@ -37,7 +37,7 @@ public class MongoDbRepository<T> : IMongoDbRepositoryBase<T> where T : MongoEnt
     
     private static string? GetCollectionName()
     {
-        return (typeof(T).GetCustomAttributes(typeof(BsonCollection), true)
-            .FirstOrDefault() as BsonCollection)?.CollectionName;
+        return (typeof(T).GetCustomAttributes(typeof(BsonCollection), true).FirstOrDefault() as
+            BsonCollection)?.CollectionName;
     }
 }

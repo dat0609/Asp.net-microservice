@@ -18,14 +18,14 @@ public class BasketController : ControllerBase
     private readonly IBasketRepository _basketRepository;
     private readonly IPublishEndpoint _publishEndpoint;
     private readonly IMapper _mapper;
-    private readonly StockItemGrpcService _stockItemGrpcServiceProvider;
+    private readonly StockItemGrpcService _stockItemGrpcService;
 
-    public BasketController(IBasketRepository basketRepository, IPublishEndpoint publishEndpoint, IMapper mapper, StockItemGrpcService stockItemGrpcServiceProvider)
+    public BasketController(IBasketRepository basketRepository, IPublishEndpoint publishEndpoint, IMapper mapper, StockItemGrpcService stockItemGrpcService)
     {
         _basketRepository = basketRepository ?? throw new ArgumentNullException(nameof(basketRepository));
         _publishEndpoint = publishEndpoint;
         _mapper = mapper;
-        _stockItemGrpcServiceProvider = stockItemGrpcServiceProvider;
+        _stockItemGrpcService = stockItemGrpcService;
     }
 
     [HttpGet("demo")]
@@ -49,7 +49,7 @@ public class BasketController : ControllerBase
         // Communicate with Inventory.grpc and check if the requested quantity of product is available
         foreach (var cart in basket.Items)
         {
-            var stock = await _stockItemGrpcServiceProvider.GetStock(cart.ItemNo);
+            var stock = await _stockItemGrpcService.GetStock(cart.ItemNo);
             cart.SetAvailableQuantity(stock.Quantity);
         }
         var options = new DistributedCacheEntryOptions()
