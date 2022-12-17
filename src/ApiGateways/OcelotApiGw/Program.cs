@@ -43,6 +43,7 @@ try
 }
 catch (Exception e)
 {
+    Log.Fatal(e, "API Gateway failed to start");
     Log.Fatal("API Gateway failed to start up");
 }
 finally
