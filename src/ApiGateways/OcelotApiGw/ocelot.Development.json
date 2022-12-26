@@ -20,7 +20,7 @@
       "UpstreamHttpMethod": [
         "GET"
       ],
-      "DownstreamPathTemplate": "/api/products/{id}",
+      "DownstreamPathTemplate": "/api/products/{id}", 
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {

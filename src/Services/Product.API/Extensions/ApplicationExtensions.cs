@@ -6,6 +6,8 @@ public static class ApplicationExtensions
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+        
+        app.UseAuthentication();
 
         app.UseRouting();
         // app.UseHttpsRedirection(); //for production only

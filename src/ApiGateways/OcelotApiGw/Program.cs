@@ -30,10 +30,19 @@ try
     }
     
     app.UseCors("CorsPolicy");
-    
+    app.UseAuthentication();
+    app.UseRouting();
     //app.UseHttpsRedirection();
 
     app.UseAuthorization();
+    
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapGet("/", async context =>
+        {
+            await context.Response.WriteAsync("Hello World!");
+        });
+    });
 
     app.MapControllers();
 
