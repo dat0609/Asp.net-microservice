@@ -69,14 +69,12 @@ public static class ServiceExtensions
 
     internal static IServiceCollection AddJwtAuthentication(this IServiceCollection services)
     {
-        var setting = services.GetOption<JwtSettings>(nameof(JwtSettings));
-        if (setting == null)
-        {
-            throw new ArgumentNullException(nameof(setting));
-        }
-        
-        var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(setting.Key!));
-        
+        var settings = services.GetOption<JwtSettings>(nameof(JwtSettings));
+        if (settings == null || string.IsNullOrEmpty(settings.Key))
+            throw new ArgumentNullException($"{nameof(JwtSettings)} is not configured properly");
+
+        var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Key));
+
         var tokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
@@ -85,18 +83,17 @@ public static class ServiceExtensions
             ValidateAudience = false,
             ValidateLifetime = false,
             ClockSkew = TimeSpan.Zero,
-            RequireExpirationTime = false,
+            RequireExpirationTime = false
         };
-        
-        services.AddAuthentication(op =>
+        services.AddAuthentication(o =>
         {
-            op.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            op.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(op =>
+            o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(x =>
         {
-            op.RequireHttpsMetadata = false;
-            op.SaveToken = true;
-            op.TokenValidationParameters = tokenValidationParameters;
+            x.SaveToken = true;
+            x.RequireHttpsMetadata = false;
+            x.TokenValidationParameters = tokenValidationParameters;
         });
 
         return services;

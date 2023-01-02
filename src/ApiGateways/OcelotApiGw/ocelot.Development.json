@@ -30,12 +30,12 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/products/{id}",
+      "UpstreamPathTemplate": "/products",
       "UpstreamHttpMethod": [
-        "PUT",
-        "DELETE"
+        "POST",
+        "GET"
       ],
-      "DownstreamPathTemplate": "/api/products/{id}",
+      "DownstreamPathTemplate": "/api/products",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -43,13 +43,28 @@
           "Port": 5002
         }
       ]
+    },
+    {
+      "UpstreamPathTemplate": "/products/{any}",
+      "UpstreamHttpMethod": [
+        "PUT",
+        "DELETE"
+      ],
+      "DownstreamPathTemplate": "/api/products/{any}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
       //      "AuthenticationOptions": {
       //        "AuthenticationProviderKey": "Bearer",
       //        "AllowedScopes": []
       //      },
-      //      "RouteClaimsRequirement": {
-      //        "Role": "Admin"
-      //      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
     },
     {
       "UpstreamPathTemplate": "/products/get-product-by-no/{productNo}",

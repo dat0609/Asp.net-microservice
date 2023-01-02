@@ -23,9 +23,9 @@ try
         ProductContextSeed.SeedProductAsync(context, Log.Logger).Wait();
     }).Run();
 }
-catch (Exception)
+catch (Exception e)
 {
-    Log.Fatal("Product API failed to start up");
+    Log.Fatal(e, "Product API failed to start up");
 }
 finally
 {
