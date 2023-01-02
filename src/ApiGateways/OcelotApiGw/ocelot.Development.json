@@ -42,7 +42,14 @@
           "Host": "localhost",
           "Port": 5002
         }
-      ]
+      ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1s", 
+        "PeriodTimespan": 10, // retry after 10 seconds
+        "Limit": 1
+      }
     },
     {
       "UpstreamPathTemplate": "/products/{any}",
