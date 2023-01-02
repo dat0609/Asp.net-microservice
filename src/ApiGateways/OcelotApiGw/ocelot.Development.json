@@ -49,6 +49,11 @@
         "Period": "1s", 
         "PeriodTimespan": 10, // retry after 10 seconds
         "Limit": 1
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2, // throw exception after 2s
+        "DurationOfBreak": 1000,
+        "TimeoutValue": 5000 // if service throws 2rd exception, wait 5s before retrying
       }
     },
     {

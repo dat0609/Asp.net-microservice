@@ -373,8 +373,6 @@ _
 .src/BuildingBlocks/Shared/DTOs/TokenRequest.cs,2\c\2cb29b49a5d34b33039b0f4838d764cdf58e7c35
 g
 7src/BuildingBlocks/Shared/Configurations/JwtSettings.cs,d\e\de4a1b418183ce62ebba78d47961da0821db0445
-^
-.src/ApiGateways/OcelotApiGw/OcelotApiGw.csproj,8\5\85f3375a393bffbad73f6414663b4e0d9def341b
 j
 :src/BuildingBlocks/Shared/DTOs/CreateOrUpdateProductDto.cs,2\2\2235e8405b54343ad66f527c537378fd56159bbf
 b
@@ -383,8 +381,6 @@ c
 3src/BuildingBlocks/Shared/Identity/ITokenService.cs,1\2\12324869be0728bf4a5a9068528e6bd3dfb10d5d
 j
 :src/ApiGateways/OcelotApiGw/Controllers/TokenController.cs,f\a\faad62a5d697206d95394184bd28b1f9ea501f3c
-j
-:src/Services/Product.API/Controllers/ProductsController.cs,f\a\fa4ade4d358febd6772c4a224967334b07106dbc
 V
 &src/ApiGateways/OcelotApiGw/Program.cs,0\1\0108a9bc706695a3a8b4bb4e2f7f92a349e8ff46
 l
