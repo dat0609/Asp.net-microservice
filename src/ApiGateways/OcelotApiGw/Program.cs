@@ -25,8 +25,8 @@ try
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
-        app.UseSwagger();
-        app.UseSwaggerUI();
+        /*app.UseSwagger();
+        app.UseSwaggerUI();*/
     }
     
     app.UseCors("CorsPolicy");
@@ -38,14 +38,20 @@ try
     
     app.UseEndpoints(endpoints =>
     {
-        endpoints.MapGet("/", async context =>
+        endpoints.MapGet("/", context =>
         {
-            await context.Response.WriteAsync("Hello World!");
+             //context.Response.WriteAsync("Hello World!");
+             context.Response.Redirect("swagger/index.html");
+             return Task.CompletedTask;
         });
     });
 
     app.MapControllers();
 
+    app.UseSwaggerForOcelotUI(x =>
+    {
+        x.PathToSwaggerGenerator = "/swagger/docs";
+    });
     await app.UseOcelot();
 
     app.Run();

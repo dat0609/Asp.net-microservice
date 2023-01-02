@@ -87,8 +87,6 @@ asrc/Services/Ordering/Ordering.Application/Features/V1/Orders/Queries/GetOrders
 hsrc/Services/Ordering/Ordering.Application/Features/V1/Orders/Queries/GetOrders/GetOrdersQueryHandler.cs,7\9\79f28b4dd34221d87c396a89d917a0d47cf026c8
 d
 4src/BuildingBlocks/Shared/SeedWork/ApiErrorResult.cs,8\5\85c31445ede1adf3e62a7b0a7e2debff3576b070
-Y
-)src/Services/Basket.API/MappingProfile.cs,8\0\80b5d6864e78e9b8622543138cc7015e0617ddd8
 w
 Gsrc/BuildingBlocks/Infrastructure/Extensions/ConfigurationExtensions.cs,e\e\ee39a5f33de719bf0e8d40d11a817dd25d20d0b3
 í
@@ -155,8 +153,6 @@ b
 ksrc/Services/Ordering/Ordering.API/Application/IntegrationEvents/EventHandler/BasketCheckoutEventHandler.cs,a\0\a055f77dc0130123ad2f418953018ddbf325a3bf
 û
 nsrc/Services/Ordering/Ordering.Application/Features/V1/Orders/Queries/GetOrderById/GetOrderByIdQueryHandler.cs,9\0\90b6b29555e9d8891d456eb7189f337bc304c02b
-f
-6src/Services/Basket.API/Properties/launchSettings.json,0\b\0bc8c5007da3cd1f9e2a526dc93178eb1c173317
 d
 4src/Services/Basket.API/appsettings.Development.json,7\1\717b13c6af458770885ec06a76672d315216228d
 è
@@ -261,10 +257,6 @@ X
 ,src/Services/Basket.API/Entities/CartItem.cs,8\e\8ecfb11532a9ca7b36aa9b52ce67d52435c5ff02
 t
 Dsrc/Services/Basket.API/Repositories/Interfaces/IBasketRepository.cs,5\9\5958a1327e7b736a814a0f582d7e146f7a1d77bb
-k
-;src/Services/Basket.API/GrpcService/StockItemGrpcService.cs,2\8\28d2c9ef64dfaa30b234464204ef962742a77fed
-h
-8src/Services/Basket.API/Repositories/BasketRepository.cs,f\7\f78ba9ed68f753d7571b9d088aaa9f8dbd83ffb1
 o
 ?src/BuildingBlocks/Infrastructure/Common/RepositoryBaseAsync.cs,d\0\d0a1142066e53260e7d8b1d8be3ac41d212372c0
 m
@@ -275,8 +267,6 @@ L
 aspnetcore-microservices.sln,6\7\670247c4fb40f05189e3ea830beff72356587f91
 z
 Jsrc/BuildingBlocks/Infrastructure/Common/Repositories/MongoDbRepository.cs,a\5\a5819f0e5e1513d0ac2f4d8d87f4484e5d74e5c6
-g
-7src/Services/Basket.API/Controllers/BasketController.cs,1\8\181bddc23356fc2dc049921d7c4ebe67dd019d44
 h
 8src/Services/Inventory/Inventory.Grpc/Protos/stock.proto,b\8\b8f789ae774e591d3d201fae65c8ba7f32e5c6a0
 Ö
@@ -293,8 +283,6 @@ y
 Isrc/Services/Inventory/Inventory.Grpc/Repositories/InventoryRepository.cs,1\b\1b454347a1fb44542821c96c332303b6594183fb
 {
 Ksrc/Services/Inventory/Inventory.Customer.API/Controllers/HomeController.cs,b\d\bd9ad479f9e71612bf4ae74ed2cb23dd62e34901
-|
-Lsrc/Services/Inventory/Inventory.Customer.API/Properties/launchSettings.json,0\d\0d7153ddad362ea0d9cc0f7d2f613a198e0ac2be
 {
 Ksrc/Services/Inventory/Inventory.Customer.API/Extension/ServiceExtension.cs,4\5\453bd4f097c18c497d42415eb769329bdb62e8bc
 F
@@ -351,8 +339,6 @@ V
 &src/ApiGateways/OcelotApiGw/.gitignore,6\1\618138647fc1612904b282f17375ade0915fb06d
 d
 4src/Services/Basket.API/Extensions/HostExtensions.cs,0\c\0c4b0d89568b86013f13ece2a92b0889bf228670
-g
-7src/Services/Basket.API/Extensions/ServiceExtensions.cs,6\3\63b317fbc99383ada96de49a938b8a176edc54b3
 f
 6src/Services/Customer.API/appsettings.Development.json,1\b\1bbb775962cebe22a35d0cd48e3ac18c0d2bb3d3
 l
@@ -381,8 +367,6 @@ c
 3src/BuildingBlocks/Shared/Identity/ITokenService.cs,1\2\12324869be0728bf4a5a9068528e6bd3dfb10d5d
 j
 :src/ApiGateways/OcelotApiGw/Controllers/TokenController.cs,f\a\faad62a5d697206d95394184bd28b1f9ea501f3c
-V
-&src/ApiGateways/OcelotApiGw/Program.cs,0\1\0108a9bc706695a3a8b4bb4e2f7f92a349e8ff46
 l
 <src/Services/Product.API/Extensions/ApplicationExtensions.cs,b\c\bc49fc1ee864ae94012faf6f40a337c360fc8649
 h
