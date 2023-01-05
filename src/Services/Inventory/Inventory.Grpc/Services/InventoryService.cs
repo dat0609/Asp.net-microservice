@@ -1,31 +1,30 @@
-﻿using Grpc.Core;
+using Grpc.Core;
 using Inventory.Grpc.Repositories.Interfaces;
 using ILogger = Serilog.ILogger;
 
 namespace Inventory.Grpc.Services;
-using Inventory.Grpc.Protos;
-
+using Protos;
 public class InventoryService : StockProtoService.StockProtoServiceBase
 {
-    private readonly IInventoryRepository _inventoryRepository;
+    private readonly IInventoryRepository _repository;
     private readonly ILogger _logger;
 
-    public InventoryService(IInventoryRepository inventoryRepository, ILogger logger)
+    public InventoryService(IInventoryRepository repository, ILogger logger)
     {
-        _inventoryRepository = inventoryRepository ?? throw new ArgumentNullException(nameof(inventoryRepository));
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
-    
+
     public override async Task<StockModel> GetStock(GetStockRequest request, ServerCallContext context)
     {
-        _logger.Information($"GetStock called: {request.ItemNo}");
-        var stock = await _inventoryRepository.GetStockQuantity(request.ItemNo);
-        
-        var result = new StockModel
+        _logger.Information($"BEGIN Get Stock of ItemNo: {request.ItemNo}");
+        var stockQuantity = await _repository.GetStockQuantity(request.ItemNo);
+        var result = new StockModel()
         {
-            Quantity = stock
+            Quantity = stockQuantity
         };
-        
-        return  result;
+        _logger.Information($"END Get Stock of ItemNo: {request.ItemNo} - Quantity: {result.Quantity}");
+
+        return result;
     }
 }

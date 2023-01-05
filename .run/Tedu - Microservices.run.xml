@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Tedu - Microservices" type="CompoundRunConfigurationType">
+    <toRun name="Basket.API" type="LaunchSettings" />
+    <toRun name="Customer.API" type="LaunchSettings" />
+    <toRun name="Hangfire.API" type="LaunchSettings" />
+    <toRun name="Inventory.Grpc" type="LaunchSettings" />
+    <toRun name="Inventory.Product.API" type="LaunchSettings" />
+    <toRun name="OcelotApiGw" type="LaunchSettings" />
+    <toRun name="Ordering.API" type="LaunchSettings" />
+    <toRun name="Product.API" type="LaunchSettings" />
+    <toRun name="WebHealthStatus" type="LaunchSettings" />
+    <method v="2" />
+  </configuration>
+</component>

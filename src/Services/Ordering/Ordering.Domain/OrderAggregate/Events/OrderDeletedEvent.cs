@@ -1,12 +1,12 @@
-using Contracts.Common.Event;
+using Contracts.Common.Events;
 
 namespace Ordering.Domain.OrderAggregate.Events;
 
 public class OrderDeletedEvent : BaseEvent
 {
-    public long Id { get; set; }
+    public long Id { get; }
 
-    public OrderDeletedEvent (long id)
+    public OrderDeletedEvent(long id)
     {
         Id = id;
     }

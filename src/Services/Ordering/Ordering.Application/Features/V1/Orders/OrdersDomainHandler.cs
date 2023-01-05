@@ -6,7 +6,7 @@ using Shared.Services.Email;
 
 namespace Ordering.Application.Features.V1.Orders;
 
-public class OrdersDomainHandler :
+public class OrdersDomainHandler : 
     INotificationHandler<OrderCreatedEvent>,
     INotificationHandler<OrderDeletedEvent>
 {
@@ -17,7 +17,7 @@ public class OrdersDomainHandler :
         _logger = logger;
         _emailService = emailService;
     }
-
+    
     public Task Handle(OrderCreatedEvent notification, CancellationToken cancellationToken)
     {
         _logger.Information("Ordering Domain Event: {DomainEvent}", notification.GetType().Name);
@@ -25,8 +25,9 @@ public class OrdersDomainHandler :
         {
             ToAddress = notification.EmailAddress,
             Body = $"Your order detail. " +
+                   $"<p> Order Id: {notification.DocumentNo}</p>" +
                    $"<p> Total: {notification.TotalPrice}</p>",
-            Subject = $"Hello {notification.EmailAddress}, your order was created"
+            Subject = $"Hello {notification.FullName}, your order was created"
         };
 
         try
@@ -38,7 +39,7 @@ public class OrdersDomainHandler :
         {
             _logger.Error($"Order {notification.Id} failed due to an error with the email service: {ex.Message}");
         }
-
+        
         return Task.CompletedTask;
     }
 

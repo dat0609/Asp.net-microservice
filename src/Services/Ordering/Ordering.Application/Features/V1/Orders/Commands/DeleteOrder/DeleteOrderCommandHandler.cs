@@ -3,11 +3,10 @@ using Ordering.Application.Common.Exceptions;
 using Ordering.Application.Common.Interfaces;
 using Ordering.Domain.Entities;
 using Serilog;
-using Shared.SeedWork;
 
 namespace Ordering.Application.Features.V1.Orders;
 
-public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand, ApiResult<bool>>
+public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
 {
     private readonly IOrderRepository _orderRepository;
     private readonly ILogger _logger;
@@ -17,19 +16,17 @@ public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand, Api
         _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
-
-    public async Task<ApiResult<bool>> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
+    
+    public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
         var orderEntity = await _orderRepository.GetByIdAsync(request.Id);
         if (orderEntity == null) throw new NotFoundException(nameof(Order), request.Id);
-        
-        orderEntity.DeletedOrder();
-
         _orderRepository.DeleteOrder(orderEntity);
+        orderEntity.DeletedOrder();
         await _orderRepository.SaveChangesAsync();
 
         _logger.Information($"Order {orderEntity.Id} was successfully deleted.");
 
-        return new ApiResult<bool>(true);
+        return Unit.Value;
     }
 }

@@ -1,5 +1,5 @@
-using Contracts.Common.Event;
-using Contracts.Domains.Interface;
+using Contracts.Common.Events;
+using Contracts.Domains.Interfaces;
 
 namespace Contracts.Common.Interfaces;
 

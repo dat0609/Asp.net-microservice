@@ -1,11 +1,14 @@
 {
   "GlobalConfiguration": {
-      "BaseUrl": "http://localhost:5000"
+    "BaseUrl": "http://localhost:5000"
   },
   "Routes": [
+    // Customer api: http://localhost:5003/api/customers
     {
       "UpstreamPathTemplate": "/customers/{username}",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [
+        "GET"
+      ],
       "DownstreamPathTemplate": "/api/customers/{username}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -16,12 +19,13 @@
       ],
       "SwaggerKey": "customer-service"
     },
+    // Product api: http://localhost:5002/api/products
     {
       "UpstreamPathTemplate": "/products/{id}",
       "UpstreamHttpMethod": [
         "GET"
       ],
-      "DownstreamPathTemplate": "/api/products/{id}", 
+      "DownstreamPathTemplate": "/api/products/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -32,69 +36,12 @@
       "SwaggerKey": "product-service"
     },
     {
-      "UpstreamPathTemplate": "/products",
-      "UpstreamHttpMethod": [
-        "GET"
-      ],
-      "DownstreamPathTemplate": "/api/products",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5002
-        }
-      ],
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "10s", 
-        "PeriodTimespan": 10, // retry after 10 seconds
-        "Limit": 5
-      },
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2, // throw exception after 2s
-        "DurationOfBreak": 1000,
-        "TimeoutValue": 5000 // if service throws 2rd exception, wait 5s before retrying
-      },
-      "FileCacheOptions": {
-        "TtlSeconds": 15,
-        "Region": "General"
-      }
-    },    
-    {
-      "UpstreamPathTemplate": "/products",
-      "UpstreamHttpMethod": [
-        "POST"
-      ],
-      "DownstreamPathTemplate": "/api/products",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5002
-        }
-      ],
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s", 
-        "PeriodTimespan": 10, // retry after 10 seconds
-        "Limit": 1
-      },
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2, // throw exception after 2s
-        "DurationOfBreak": 1000,
-        "TimeoutValue": 5000 // if service throws 2rd exception, wait 5s before retrying
-      },
-      "SwaggerKey": "product-service"
-    },
-    {
-      "UpstreamPathTemplate": "/products/{any}",
+      "UpstreamPathTemplate": "/products/{id}",
       "UpstreamHttpMethod": [
         "PUT",
         "DELETE"
       ],
-      "DownstreamPathTemplate": "/api/products/{any}",
+      "DownstreamPathTemplate": "/api/products/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -106,8 +53,39 @@
       //        "AuthenticationProviderKey": "Bearer",
       //        "AllowedScopes": []
       //      },
-      "RouteClaimsRequirement": {
-        "Role": "Admin"
+      //      "RouteClaimsRequirement": {
+      //        "Role": "Admin"
+      //      },
+      "SwaggerKey": "product-service"
+    },
+    {
+      "UpstreamPathTemplate": "/products",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "DownstreamPathTemplate": "/api/products",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [], // the client in this array will not be affected by the rate limiting
+        "EnableRateLimiting": true,
+        "Period": "10s", // 1s, 5m, 1h, 1d
+        "PeriodTimespan": 10, // retry after a certain number of seconds
+        "Limit": 3 // the maximum number of requests that a client can make in a defined period.
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2, //If the service does not response for 2 seconds, it will throw a timeout exception
+        "DurationOfBreak": 1000,
+        "TimeoutValue": 5000 //If the service throws a second exception, the service will not be accessible for five seconds
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15 //cached seconds
       },
       "SwaggerKey": "product-service"
     },
@@ -296,7 +274,7 @@
         {
           "Name": "Basket API",
           "Version": "v1",
-          "Url": "http://localhost:5018/swagger/v1/swagger.json"
+          "Url": "http://localhost:5004/swagger/v1/swagger.json"
         }
       ]
     },
@@ -316,7 +294,7 @@
         {
           "Name": "Inventory API",
           "Version": "v1",
-          "Url": "http://localhost:5130/swagger/v1/swagger.json"
+          "Url": "http://localhost:5006/swagger/v1/swagger.json"
         }
       ]
     }

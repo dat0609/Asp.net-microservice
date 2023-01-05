@@ -31,18 +31,15 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, Api
     {
         var orderEntity = await _orderRepository.GetByIdAsync(request.Id);
         if (orderEntity is null) throw new NotFoundException(nameof(Order), request.Id);
-
+        
         _logger.Information($"BEGIN: {MethodName} - Order: {request.Id}");
-
+        
         orderEntity = _mapper.Map(request, orderEntity);
-
         var updatedOrder = await _orderRepository.UpdateOrderAsync(orderEntity);
-
-        await _orderRepository.SaveChangesAsync();
-
+        _orderRepository.SaveChangesAsync();
         _logger.Information($"Order {request.Id} was successfully updated.");
         var result = _mapper.Map<OrderDto>(updatedOrder);
-
+        
         _logger.Information($"END: {MethodName} - Order: {request.Id}");
         return new ApiSuccessResult<OrderDto>(result);
     }

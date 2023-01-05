@@ -1,4 +1,4 @@
-﻿using Contracts.Domains.Interface;
+using Contracts.Domains.Interfaces;
 using Inventory.Grpc.Entities;
 
 namespace Inventory.Grpc.Repositories.Interfaces;

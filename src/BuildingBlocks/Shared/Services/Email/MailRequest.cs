@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Http;
-
 namespace Shared.Services.Email;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 public class MailRequest
 {

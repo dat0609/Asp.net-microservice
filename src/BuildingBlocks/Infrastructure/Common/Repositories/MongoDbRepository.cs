@@ -1,43 +1,49 @@
-using Contracts.Domains;
-using Contracts.Domains.Interface;
-using Infrastructure.Extensions;
 using MongoDB.Driver;
+using System.Linq.Expressions;
+using Contracts.Domains;
+using Contracts.Domains.Interfaces;
+using Infrastructure.Extensions;
 using Shared.Configurations;
 
-namespace Infrastructure.Common.Repositories;
+namespace Infrastructure.Common;
 
 public class MongoDbRepository<T> : IMongoDbRepositoryBase<T> where T : MongoEntity
 {
-    private readonly IMongoDatabase _database;
+    public IMongoDatabase Database { get; }
 
     public MongoDbRepository(IMongoClient client, MongoDbSettings settings)
     {
-        _database = client.GetDatabase(settings.DatabaseName);
+        Database = client.GetDatabase(settings.DatabaseName);
     }
 
     public IMongoCollection<T> FindAll(ReadPreference? readPreference = null)
-        => _database.WithReadPreference(readPreference ?? ReadPreference.Primary)
+    {
+        return Database
+            .WithReadPreference(readPreference ?? ReadPreference.Primary)
             .GetCollection<T>(GetCollectionName());
-    
-    protected virtual IMongoCollection<T> GetCollection => _database.GetCollection<T>(GetCollectionName());
+    }
 
-    public Task CreateAsync(T entity) => GetCollection.InsertOneAsync(entity);
+    protected virtual IMongoCollection<T> Collection =>
+        Database.GetCollection<T>(GetCollectionName());
+
+    public Task CreateAsync(T entity) => Collection.InsertOneAsync(entity);
 
     public Task UpdateAsync(T entity)
     {
-        var filter = Builders<T>.Filter.Eq(x => x.Id, entity.Id);
-        return GetCollection.ReplaceOneAsync(filter, entity);
+        Expression<Func<T, string>> func = f => f.Id;
+        var value = (string)entity.GetType()
+            .GetProperty(func.Body.ToString()
+                .Split(".")[1])?.GetValue(entity, null);
+        var filter = Builders<T>.Filter.Eq(func, value);
+
+        return Collection.ReplaceOneAsync(filter, entity);
     }
 
-    public Task DeleteAsync(string id)
+    public Task DeleteAsync(string id) => Collection.DeleteOneAsync(x => x.Id.Equals(id));
+
+    private static string GetCollectionName()
     {
-        var filter = Builders<T>.Filter.Eq(x => x.Id, id);
-        return GetCollection.DeleteOneAsync(filter);
-    }
-    
-    private static string? GetCollectionName()
-    {
-        return (typeof(T).GetCustomAttributes(typeof(BsonCollection), true).FirstOrDefault() as
-            BsonCollection)?.CollectionName;
+        return (typeof(T).GetCustomAttributes(typeof(BsonCollectionAttribute), true).FirstOrDefault() as
+            BsonCollectionAttribute)?.CollectionName;
     }
 }

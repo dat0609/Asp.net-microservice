@@ -1,26 +1,29 @@
-using Contracts.Common.Event;
+using Contracts.Common.Events;
 
 namespace Ordering.Domain.OrderAggregate.Events;
 
 public class OrderCreatedEvent : BaseEvent
 {
-    public long Id { get; set; }
-    public string UserName { get; set; }
-    public decimal TotalPrice { get; set; }
+    public long Id { get; private set; }
+    public string UserName { get; private set; }
+    public string DocumentNo { get; private set; }
+    public string EmailAddress { get; private set; }
+    public decimal TotalPrice { get; private set; }
+    public string ShippingAddress { get; private set; }
+    public string InvoiceAddress { get; private set; }
+    
+    public string FullName { get; set; }
 
-    public string EmailAddress { get; set; }
-
-    public string ShippingAddress { get; set; }
-    public string InvoiceAddress { get; set; }
-
-    public OrderCreatedEvent (long id, decimal totalPrice, string userName, string emailAddress, string shippingAddress, string invoiceAddress)
+    public OrderCreatedEvent(long id, string userName, decimal totalPrice, string documentNo, string emailAddress, string shippingAddress, string invoiceAddress, 
+        string fullName)
     {
         Id = id;
         TotalPrice = totalPrice;
         UserName = userName;
+        DocumentNo = documentNo;
         EmailAddress = emailAddress;
         ShippingAddress = shippingAddress;
         InvoiceAddress = invoiceAddress;
+        FullName = fullName;
     }
-
 }

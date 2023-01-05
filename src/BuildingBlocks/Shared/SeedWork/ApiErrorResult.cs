@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Shared.SeedWork;
 
 public class ApiErrorResult<T> : ApiResult<T>

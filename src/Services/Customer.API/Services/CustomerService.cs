@@ -1,20 +1,26 @@
+using AutoMapper;
 using Customer.API.Repositories.Interfaces;
 using Customer.API.Services.Interfaces;
+using Shared.DTOs.Customer;
 
 namespace Customer.API.Services;
 
 public class CustomerService : ICustomerService
 {
-    private readonly ICustomerRepository _customerRepository;
-
-    public CustomerService(ICustomerRepository customerRepository)
+    private readonly ICustomerRepository _repository;
+    private readonly IMapper _mapper;
+    
+    public CustomerService(ICustomerRepository repository, IMapper mapper)
     {
-        _customerRepository = customerRepository;
+        _repository = repository;
+        _mapper = mapper;
     }
 
     public async Task<IResult> GetCustomerByUsernameAsync(string username)
-        => Results.Ok(await _customerRepository.GetCustomerByUsername(username));
-
-    public async Task<IResult> GetCustomersAsync() => Results.Ok(await _customerRepository.GetCustomersAsync());
-
+    {
+        var entity = await _repository.GetCustomerByUserNameAsync(username);
+        var result = _mapper.Map<CustomerDto>(entity);
+        
+        return Results.Ok(result);
+    }
 }

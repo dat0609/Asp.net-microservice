@@ -1,4 +1,4 @@
-﻿using Infrastructure.Common.Repositories;
+using Infrastructure.Common;
 using Inventory.Grpc.Entities;
 using Inventory.Grpc.Repositories.Interfaces;
 using MongoDB.Driver;
@@ -13,9 +13,7 @@ public class InventoryRepository : MongoDbRepository<InventoryEntry>, IInventory
     }
 
     public async Task<int> GetStockQuantity(string itemNo)
-    {
-        return GetCollection.AsQueryable()
-            .Where(x => x.ItemNo == itemNo)
+        => Collection.AsQueryable()
+            .Where(x => x.ItemNo.Equals(itemNo))
             .Sum(x => x.Quantity);
-    }
 }

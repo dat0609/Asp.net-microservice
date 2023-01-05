@@ -1,8 +1,8 @@
-using Contracts.Domains.Interface;
+using Contracts.Domains.Interfaces;
 
 namespace Contracts.Domains;
 
-public abstract class EntityBase<TKey>: IEntityBase<TKey>
+public abstract class EntityBase<TKey> : IEntityBase<TKey>
 {
-    public TKey? Id { get; set; }
+    public TKey Id { get; set; }
 }

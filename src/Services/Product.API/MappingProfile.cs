@@ -1,7 +1,7 @@
 using AutoMapper;
-using Infrastructure.Mappings;
+using Infrastructure.Extensions;
 using Product.API.Entities;
-using Shared.DTOs;
+using Shared.DTOs.Product;
 
 namespace Product.API;
 
@@ -12,6 +12,6 @@ public class MappingProfile : Profile
         CreateMap<CatalogProduct, ProductDto>();
         CreateMap<CreateProductDto, CatalogProduct>();
         CreateMap<UpdateProductDto, CatalogProduct>()
-            .IgnoreAllNonExisting();
+        .IgnoreAllNonExisting();
     }
 }

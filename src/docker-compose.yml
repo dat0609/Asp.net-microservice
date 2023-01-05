@@ -4,13 +4,13 @@ services:
   #database section
   orderdb:
     image: mcr.microsoft.com/mssql/server:2019-latest
-
+  
   productdb:
     image: mysql:8.0.29
-
+  
   customerdb:
     image: postgres:alpine3.16
-
+    
   basketdb:
     image: redis:alpine
 
@@ -20,7 +20,7 @@ services:
   #infrastructure section
   rabbitmq:
     image: rabbitmq:3-management-alpine
-
+  
   pgadmin:
     image: dpage/pgadmin4
 
@@ -32,43 +32,51 @@ services:
 
   kibana:
     image: docker.elastic.co/kibana/kibana:7.17.2
-
+    
   #microservices api section
   product.api:
     image: ${DOCKER_REGISTRY-}product-api:${PLATFORM:-linux}-${TAG:-latest}
     build:
       context: .
       dockerfile: Services/Product.API/Dockerfile
-
+    
   customer.api:
     image: ${DOCKER_REGISTRY-}customer-api:${PLATFORM:-linux}-${TAG:-latest}
     build:
       context: .
       dockerfile: Services/Customer.API/Dockerfile
-
+  
   basket.api:
     image: ${DOCKER_REGISTRY-}basket-api:${PLATFORM:-linux}-${TAG:-latest}
     build:
       context: .
       dockerfile: Services/Basket.API/Dockerfile
 
-  order.api:
+  ordering.api:
     image: ${DOCKER_REGISTRY-}ordering-api:${PLATFORM:-linux}-${TAG:-latest}
     build:
       context: .
       dockerfile: Services/Ordering/Ordering.API/Dockerfile
-
-  inventory.customer.api:
-    image: ${DOCKER_REGISTRY-}inventory-customer-api:${PLATFORM:-linux}-${TAG:-latest}
-    build:
-      context: .
-      dockerfile: Services/Inventory/Inventory.Customer.API/Dockerfile
   
-  inventory.grpc:
-    image: ${DOCKER_REGISTRY-}inventory-grpc-api:${PLATFORM:-linux}-${TAG:-latest}
+  inventory.product.api:
+    image: ${DOCKER_REGISTRY-}inventory-product-api:${PLATFORM:-linux}-${TAG:-latest}
     build:
       context: .
-      dockerfile: Services/Inventory/Inventory.Grpc/Dockerfile    
+      dockerfile: Services/Inventory/Inventory.Product.API/Dockerfile
+      
+  inventory.grpc:
+    image: ${DOCKER_REGISTRY-}inventory-grpc:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Services/Inventory/Inventory.Grpc/Dockerfile
+  
+  apigw.ocelot:
+    image: ${DOCKER_REGISTRY-}apigw-ocelot:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: ApiGateways/OcelotApiGw/Dockerfile
+
+    
 #network section
 networks:
   default:

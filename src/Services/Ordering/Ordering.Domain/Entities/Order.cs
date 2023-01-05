@@ -1,41 +1,52 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Contracts.Common.Event;
-using Contracts.Domains;
-using Ordering.Domain.Enums;
+using Contracts.Common.Events;
+using Contracts.Common.Interfaces;
 using Ordering.Domain.OrderAggregate.Events;
 
 namespace Ordering.Domain.Entities;
 
-public class Order : AuditTableEventEntity<long>
+public class Order : AuditableEventEntity<long>, IEventEntity
 {
     [Required]
     [Column(TypeName = "nvarchar(150)")]
     public string UserName { get; set; }
-    [Column(TypeName = "decimal(10,2)")]
+
+    public Guid DocumentNo { get; set; } = Guid.NewGuid();
+
+    [Column(TypeName = "decimal(10,2)")] 
     public decimal TotalPrice { get; set; }
 
     [Required]
     [Column(TypeName = "nvarchar(50)")]
     public string FirstName { get; set; }
+
     [Required]
     [Column(TypeName = "nvarchar(250)")]
     public string LastName { get; set; }
+
     [Required]
     [EmailAddress]
     [Column(TypeName = "nvarchar(250)")]
     public string EmailAddress { get; set; }
 
-    [Column(TypeName = "nvarchar(max)")]
+    [Column(TypeName = "nvarchar(max)")] 
     public string ShippingAddress { get; set; }
-    [Column(TypeName = "nvarchar(max)")]
+    
+    [Column(TypeName = "nvarchar(max)")] 
     public string InvoiceAddress { get; set; }
 
     public EOrderStatus Status { get; set; }
 
+    [NotMapped]
+    public string FullName => FirstName + " " + LastName;
+    
     public Order AddedOrder()
     {
-        AddDomainEvent(new OrderCreatedEvent(Id, TotalPrice, UserName, EmailAddress, ShippingAddress, InvoiceAddress));
+        AddDomainEvent(new OrderCreatedEvent(Id, UserName, 
+            TotalPrice, DocumentNo.ToString(), 
+            EmailAddress, ShippingAddress, 
+            InvoiceAddress, FullName));
         return this;
     }
 

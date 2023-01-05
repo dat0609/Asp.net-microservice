@@ -1,23 +1,31 @@
 using Basket.API;
 using Basket.API.Extensions;
 using Common.Logging;
+using Infrastructure.Middlewares;
 using Serilog;
-using StackExchange.Redis;
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
-Log.Information("Basket API is starting up");
+Log.Information($"Start {builder.Environment.ApplicationName} up");
 
 try
 {
-    builder.Host.UseSerilog(Serilogger.Configure);
-    builder.Services.ConfigureServices();
-    builder.Services.AddAutoMapper(x => x.AddProfile(new MappingProfile()));
     builder.Services.AddConfigurationSettings(builder.Configuration);
-    builder.Services.ConfigureRedis(builder.Configuration);
-    builder.Services.ConfigureGrpcServices(builder.Configuration);
-
-    // config mass transit
+    builder.Host.AddAppConfigurations();
+    builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingProfile()));
+    
+    // Add services to the container.
+    builder.Services.ConfigureServices();
+    builder.Services.ConfigureRedis();
+    builder.Services.ConfigureGrpcService();
+    builder.Services.Configure<RouteOptions>(options 
+        => options.LowercaseUrls = true);
+    
+    // configure Mass Transit
     builder.Services.ConfigureMassTransit();
 
     builder.Services.AddControllers();
@@ -26,28 +34,33 @@ try
     builder.Services.AddSwaggerGen();
 
     var app = builder.Build();
-
+    
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
-        app.UseSwaggerUI();
+        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
+            $"{builder.Environment.ApplicationName} v1"));
     }
 
-    //app.UseHttpsRedirection();
+    app.UseMiddleware<ErrorWrappingMiddleware>();
+    // app.UseHttpsRedirection();
 
     app.UseAuthorization();
 
-    app.MapControllers();
+    app.MapDefaultControllerRoute();
 
     app.Run();
 }
-catch (Exception e)
+catch (Exception ex)
 {
-    Log.Fatal("Basket API failed to start up");
+    string type = ex.GetType().Name;
+    if (type.Equals("StopTheHostException", StringComparison.Ordinal)) throw;
+
+    Log.Fatal(ex, $"Unhandled exception: {ex.Message}");
 }
 finally
 {
-    Log.Information("Basket API is shutting down");
+    Log.Information($"Shut down {builder.Environment.ApplicationName} complete");
     Log.CloseAndFlush();
 }

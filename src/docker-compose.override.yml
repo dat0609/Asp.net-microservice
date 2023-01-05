@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   #database section
-
+  
   #orderdb: sql server
   orderdb:
     container_name: orderdb
@@ -14,7 +14,7 @@ services:
       - sqlserver_data:/var/lib/sqlserver/data
     ports:
       - "1435:1433"
-
+        
   #productdb: mysql
   productdb:
     container_name: productdb
@@ -25,27 +25,27 @@ services:
       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
-
+  
   #customerdb: postgres
   customerdb:
     container_name: customerdb
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin1234
-      - POSTGRES_DB=Customerdb
+      - POSTGRES_DB=CustomerDb
     restart: always
     ports:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
+    
   #basketdb: redis
   basketdb:
     container_name: basketdb
     restart: always
     ports:
       - "6379:6379"
-
+  
   #inventorydb: mongo
   inventorydb:
     container_name: inventorydb
@@ -54,37 +54,37 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
-
+  
   #infrastructure section
-
+  
   rabbitmq:
     container_name: rabbitmq
     restart: always
     ports:
       - "5672:5672"
       - "15672:15672"
-
+    
   pgadmin:
     container_name: pgadmin
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@tedu.com
+      - PGADMIN_DEFAULT_EMAIL=admin@tedu.com.vn
       - PGADMIN_DEFAULT_PASSWORD=admin1234
     restart: always
     ports:
       - "5050:80"
     volumes:
       - pgadmin_data:/root/.pgadmin
-
+    
   portainer:
     container_name: portainer
     restart: always
     ports:
-      - "8090:8000"
+      - "8080:8000"
       - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
-
+  
   elasticsearch:
     container_name: elasticsearch
     environment:
@@ -96,7 +96,7 @@ services:
       - "9200:9200"
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
-
+  
   kibana:
     container_name: kibana
     environment:
@@ -105,32 +105,32 @@ services:
       - elasticsearch
     ports:
       - "5601:5601"
-
-  #microservices api section
+      
+  #microservices api sections
   product.api:
     container_name: product.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - "ConnectionStrings:DefaultConnectionString=Server=productdb;Port=3306;Database=ProductDB;Uid=root;Pwd=Passw0rd!;"
-    depends_on:
-        - productdb
+      - "DatabaseSettings:ConnectionString=Server=productdb;Port=3306;Database=ProductDb;Uid=root;Pwd=Passw0rd!"
+    depends_on: 
+      - productdb
     ports:
       - "6002:80"
     restart: always
-
+    
   customer.api:
     container_name: customer.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - "ConnectionStrings:DefaultConnectionString=Server=customerdb;Port=5432;Database=CustomerDb;User Id=admin;Password=admin1234"
-    depends_on:
-        - customerdb
+      - "DatabaseSettings:ConnectionString=Server=customerdb;Port=5432;Database=CustomerDb;User Id=admin;Password=admin1234"
+    depends_on: 
+      - customerdb
     ports:
-      - "6001:80"
+      - "6003:80"
     restart: always
-
+  
   basket.api:
     container_name: basket.api
     environment:
@@ -139,19 +139,19 @@ services:
       - "CacheSettings:ConnectionString=basketdb:6379"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
       - "GrpcSettings:StockUrl=http://inventory.grpc"
-    depends_on:
-        - basketdb
-        - rabbitmq
+    depends_on: 
+      - basketdb
+      - rabbitmq
     ports:
       - "6004:80"
     restart: always
-
-  order.api:
-    container_name: order.api
+  
+  ordering.api:
+    container_name: ordering.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - "ConnectionStrings:DefaultConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=Passw0rd!;Multipleactiveresultsets=true"
+      - "DatabaseSettings:ConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=Passw0rd!;Multipleactiveresultsets=true"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - orderdb
@@ -160,28 +160,46 @@ services:
       - "6005:80"
     restart: always
     
-  inventory.customer.api:
-    container_name: inventory.customer.api
+  inventory.product.api:
+    container_name: inventory.product.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - "MongoDbSettings:ConnectionString=mongodb://inventorydb:27017"
+      - "MongoDbSettings:ConnectionString=mongodb://inventorydb"
       - "MongoDbSettings:DatabaseName=InventoryDb"
     depends_on:
       - inventorydb
     ports:
       - "6006:80"
     restart: always
-    
+  
   inventory.grpc:
     container_name: inventory.grpc
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - "MongoDbSettings:ConnectionString=mongodb://inventorydb:27017"
+      - "MongoDbSettings:ConnectionString=mongodb://inventorydb"
       - "MongoDbSettings:DatabaseName=InventoryDb"
     depends_on:
       - inventorydb
     ports:
       - "6007:80"
     restart: always
+    
+  apigw.ocelot:
+    container_name: apigw.ocelot
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Local
+      - ASPNETCORE_URLS=http://+:80
+      - GlobalConfiguration:BaseUrl=http://apigw.ocelot
+    depends_on:
+      - customer.api
+      - basket.api
+      - product.api
+      - ordering.api
+      - inventory.product.api
+    ports:
+      - "6001:80"
+    restart: always
+    
+  

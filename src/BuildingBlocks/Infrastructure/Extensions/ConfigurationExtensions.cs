@@ -3,25 +3,23 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.Extensions;
 
-public static class ConfigurationExtension
+public static class ConfigurationExtensions
 {
     /// <summary>
-    ///
     /// </summary>
     /// <param name="services"></param>
     /// <param name="sectionName"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T GetOption<T>(this IServiceCollection services, string sectionName) where T : new()
+    public static T GetOptions<T>(this IServiceCollection services, string sectionName)
+        where T : new()
     {
         using var serviceProvider = services.BuildServiceProvider();
-
         var configuration = serviceProvider.GetRequiredService<IConfiguration>();
         var section = configuration.GetSection(sectionName);
+        var options = new T();
+        section.Bind(options);
 
-        var option = new T();
-        section.Bind(option);
-
-        return option;
+        return options;
     }
 }
