@@ -1,8 +1,6 @@
 
 V
 &src/ApiGateways/OcelotApiGw/Dockerfile,8\0\806db207b09a399a7f97de2eca5f8a9b9f97b643
-F
-src/docker-compose.yml,b\6\b6d47bf403e6132308330a3022bdaabcbc5e32b8
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 Y
@@ -15,14 +13,10 @@ h
 8src/Services/Product.API/Extensions/ServiceExtensions.cs,d\b\db71bd8046d6278e126f2ecb2c36f4765bc2af66
 r
 Bsrc/Services/Ordering/Ordering.API/Extensions/ServiceExtensions.cs,a\4\a4a7235c7b13da73ed54cad9d7fffa9b647cdfa9
-O
-src/docker-compose.override.yml,4\0\4019e65c739e63ff256d2cc1d5bf23be4ff96c50
 l
 <src/Services/Customer.API/Persistence/CustomerContextSeed.cs,2\b\2bfda070e0514633e43a922d50e79a4fc1a58c5b
 h
 8src/Services/Customer.API/Persistence/CustomerContext.cs,7\1\71026100267aee0631e1aca95ef63645bc5f9e89
-T
-$src/Services/Customer.API/Program.cs,7\d\7d19d73faaf2666603649a2abdf2664ace829509
 f
 6src/Services/Basket.API/Properties/launchSettings.json,0\b\0bc8c5007da3cd1f9e2a526dc93178eb1c173317
 c
@@ -33,3 +27,11 @@ g
 7src/Services/Basket.API/Extensions/ServiceExtensions.cs,6\3\63b317fbc99383ada96de49a938b8a176edc54b3
 X
 (src/Services/Basket.API/appsettings.json,0\7\072d598353b80cc8955e011f6e3533a0f5a5f082
+c
+3src/Services/Ordering/Ordering.API/appsettings.json,3\7\3716dfb415c87fa152ae81fe392c183a20099c81
+o
+?src/Services/Ordering/Ordering.API/appsettings.Development.json,8\8\8850a94050ac2c11e976d4d4a1590d4e5a692845
+S
+#src/Services/Product.API/Program.cs,c\c\ccc585ce018c337b6fcdc47f6eae86b7f20aafad
+l
+<src/BuildingBlocks/Shared/Configurations/DatabaseSettings.cs,9\5\956c3dfee8e99e4f493ac0112eb69006480c069e

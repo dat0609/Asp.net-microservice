@@ -1,15 +1,10 @@
-using Common.Logging;
 using Customer.API;
 using Customer.API.Controllers;
+using Customer.API.Extensions;
 using Customer.API.Persistence;
-using Customer.API.Repositories;
-using Customer.API.Repositories.Interfaces;
-using Customer.API.Services;
-using Customer.API.Services.Interfaces;
 using Infrastructure.Middlewares;
-using Microsoft.EntityFrameworkCore;
+using Infrastructure.ScheduleJob;
 using Serilog;
-using Shared.Configurations;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -21,23 +16,18 @@ Log.Information($"Start {builder.Environment.ApplicationName} up");
 
 try
 {
+    builder.Host.AddAppConfigurations();
     // Add services to the container.
-    builder.Host.UseSerilog(Serilogger.Configure);
+    builder.Services.AddConfigurationSettings(builder.Configuration);
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingProfile()));
 
-    var databaseSettings = builder.Configuration.GetSection(nameof(DatabaseSettings))
-        .Get<DatabaseSettings>();
-    if (databaseSettings == null || string.IsNullOrEmpty(databaseSettings.ConnectionString))
-        throw new ArgumentNullException("Connection string is not configured.");
-
-    builder.Services.AddDbContext<CustomerContext>(
-        options => options.UseNpgsql(databaseSettings.ConnectionString));
-    builder.Services.AddScoped<ICustomerRepository, CustomerRepository>()
-        .AddScoped<ICustomerService, CustomerService>();
+    builder.Services.ConfigureCustomerContext();
+    builder.Services.AddInfrastructureServices();
+    builder.Services.AddHangfireService();
 
     var app = builder.Build();
 
@@ -61,6 +51,8 @@ try
     // app.UseHttpsRedirection(); //production only
 
     app.UseAuthorization();
+
+    app.UseHangfireDashboard(builder.Configuration);
 
     app.MapControllers();
 

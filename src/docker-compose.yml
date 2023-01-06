@@ -15,6 +15,9 @@ services:
     image: redis:alpine
 
   inventorydb:
+    image: mongo  
+    
+  hangfiredb:
     image: mongo
 
   #infrastructure section
@@ -101,3 +104,6 @@ volumes:
     name: mongo_data
   pgadmin_data:
     name: pgadmin_data
+  hangfire_mongo_data:
+    name: hangfire_data
+  

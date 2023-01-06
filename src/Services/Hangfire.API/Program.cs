@@ -1,15 +1,22 @@
 using Common.Logging;
+using Hangfire.API.Extensions;
+using Infrastructure.ScheduleJob;
 using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseSerilog(Serilogger.Configure);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
 
-Log.Information("Start Hangfire API up");
+var builder = WebApplication.CreateBuilder(args);
+
+Log.Information($"Start {builder.Environment.ApplicationName} up");
 
 try
 {
     // Add services to the container.
-
+    builder.Services.AddHangfireService();
+    builder.Host.AddAppConfigurations();
+    builder.Services.AddConfigurationSettings(builder.Configuration);
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
@@ -24,20 +31,29 @@ try
         app.UseSwaggerUI();
     }
 
+    app.UseRouting();
     app.UseHttpsRedirection();
 
     app.UseAuthorization();
+    
+    app.UseHangfireDashboard(builder.Configuration);
 
-    app.MapControllers();
-
+    app.UseEndpoints(e =>
+    {
+        e.MapDefaultControllerRoute();
+    });
+    
     app.Run();
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "Unhandled exception");
+    var type = ex.GetType().Name;
+    if (type.Equals("StopTheHostException", StringComparison.Ordinal)) throw;
+
+    Log.Fatal(ex, $"Unhandled exception: {ex.Message}");
 }
 finally
 {
-    Log.Information("Shut down Hangfire API complete");
+    Log.Information($"Shutdown {builder.Environment.ApplicationName} complete");
     Log.CloseAndFlush();
 }
