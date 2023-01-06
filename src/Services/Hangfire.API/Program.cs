@@ -15,6 +15,7 @@ try
 {
     // Add services to the container.
     builder.Services.AddHangfireService();
+    builder.Services.ConfigureServices();
     builder.Host.AddAppConfigurations();
     builder.Services.AddConfigurationSettings(builder.Configuration);
     builder.Services.AddControllers();

@@ -1,4 +1,8 @@
-﻿using Shared.Configurations;
+﻿using Contracts.ScheduleJobs;
+using Contracts.Services;
+using Infrastructure.ScheduleJob;
+using Infrastructure.Services;
+using Shared.Configurations;
 
 namespace Hangfire.API.Extensions;
 
@@ -17,4 +21,10 @@ public static class ServiceExtension
 
         return services;
     }
+    
+    public static IServiceCollection ConfigureServices(this IServiceCollection services)
+        => services.AddTransient<IScheduleJobService, HangfireService>()
+            //.AddScoped<ISmtpEmailService, SmtpEmailService>()
+            //.AddScoped<IBackgroundJobService, BackgroundJobService>()
+    ;
 }
