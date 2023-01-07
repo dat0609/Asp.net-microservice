@@ -33,6 +33,9 @@
       <Protobuf Include="Protos\stockItem.proto" GrpcServices="Client">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Protobuf>
+      <None Update="EmailTemplate\reminder-checkout.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
