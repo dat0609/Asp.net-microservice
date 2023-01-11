@@ -1,5 +1,9 @@
-﻿using Contracts.ScheduleJobs;
+﻿using Contracts.Configurations;
+using Contracts.ScheduleJobs;
 using Contracts.Services;
+using Hangfire.API.Service;
+using Hangfire.API.Service.Interface;
+using Infrastructure.Configurations;
 using Infrastructure.ScheduleJob;
 using Infrastructure.Services;
 using Shared.Configurations;
@@ -15,16 +19,16 @@ public static class ServiceExtension
             .Get<HangfireSettings>();
         services.AddSingleton(hangFireSettings);
         
-        /*var emailSettings = configuration.GetSection(nameof(SMTPEmailSetting))
+        var emailSettings = configuration.GetSection(nameof(SMTPEmailSetting))
             .Get<SMTPEmailSetting>();
-        services.AddSingleton(emailSettings);*/
+        services.AddSingleton(emailSettings);
 
         return services;
     }
     
     public static IServiceCollection ConfigureServices(this IServiceCollection services)
         => services.AddTransient<IScheduleJobService, HangfireService>()
-            //.AddScoped<ISmtpEmailService, SmtpEmailService>()
-            //.AddScoped<IBackgroundJobService, BackgroundJobService>()
+            .AddScoped<ISmtpEmailService, SmtpEmailService>()
+            .AddScoped<IBackgroundJobService, BackgroundJobService>()
     ;
 }

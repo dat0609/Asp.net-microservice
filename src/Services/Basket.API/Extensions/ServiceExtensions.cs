@@ -22,6 +22,7 @@ public static class ServiceExtensions
         var eventBusSettings = configuration.GetSection(nameof(EventBusSettings))
             .Get<EventBusSettings>();
         services.AddSingleton(eventBusSettings);
+        
         var cacheSettings = configuration.GetSection(nameof(CacheSettings))
             .Get<CacheSettings>();
         services.AddSingleton(cacheSettings);
@@ -29,6 +30,10 @@ public static class ServiceExtensions
         var grpcSettings = configuration.GetSection(nameof(GrpcSettings))
             .Get<GrpcSettings>();
         services.AddSingleton(grpcSettings);
+        
+        var backgroundJob = configuration.GetSection(nameof(BackgroundJobSettings))
+            .Get<BackgroundJobSettings>();
+        services.AddSingleton(backgroundJob);
 
         return services;
     }
@@ -78,5 +83,10 @@ public static class ServiceExtensions
             // Publish submit order message, instead of sending it to a specific queue directly.
             config.AddRequestClient<IBasketCheckoutEvent>();
         });
+    }
+    
+    public static void ConfigureHttpClientService(this IServiceCollection services)
+    {
+        services.AddHttpClient<BackgroundJobHttpService>();
     }
 }

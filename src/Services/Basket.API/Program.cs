@@ -15,6 +15,7 @@ Log.Information($"Start {builder.Environment.ApplicationName} up");
 try
 {
     builder.Services.AddConfigurationSettings(builder.Configuration);
+    builder.Services.ConfigureHttpClientService();
     builder.Host.AddAppConfigurations();
     builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingProfile()));
     
