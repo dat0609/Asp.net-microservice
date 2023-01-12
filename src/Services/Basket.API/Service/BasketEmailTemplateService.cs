@@ -9,9 +9,9 @@ public class BasketEmailTemplateService : EmailTemplateService, IEmailTemplateSe
     {
     }
     
-    public string GenerateReminderEmail(string username, string checkoutUrl = "basket/checkout")
+    public string GenerateReminderEmail(string username)
     {
-        var _checkoutUrl = $"{_backgroundJobSettings.CheckoutUrl}/{checkoutUrl}/{username}";
+        var _checkoutUrl = $"{_backgroundJobSettings.CheckoutUrl}/{_backgroundJobSettings.ScheduledJobUrl}/{username}";
         
         var emailText = ReadEmailTemplate("reminder-checkout");
         var emailReplace = emailText.Replace("[username]", username)

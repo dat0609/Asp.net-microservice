@@ -19,7 +19,9 @@ public class BackgroundJobService : IBackgroundJobService
     }
 
     public IScheduleJobService ScheduledJobService => _jobService;
-    
+
+    public IScheduleJobService ScheduleJobService { get; }
+
     public string SendEmailContent(string email, string subject, string emailContent, DateTimeOffset enqueueAt)
     {
         var emailRequest = new MailRequest
