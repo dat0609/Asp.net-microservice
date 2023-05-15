@@ -82,8 +82,8 @@ public static class HangfireExtension
                 break;
             
             case "postgresql":
-                services.AddHangfire(x =>
-                    x.UsePostgreSqlStorage(settings.Storage.ConnectionString));
+                /*services.AddHangfire(x =>
+                    x.UsePostgreSqlStorage(settings.Storage.ConnectionString));*/
                 break;
             
             case "mssql":

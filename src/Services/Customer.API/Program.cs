@@ -27,7 +27,7 @@ try
 
     builder.Services.ConfigureCustomerContext();
     builder.Services.AddInfrastructureServices();
-    builder.Services.AddHangfireService();
+    //builder.Services.AddHangfireService();
 
     var app = builder.Build();
 
@@ -52,7 +52,7 @@ try
 
     app.UseAuthorization();
 
-    app.UseHangfireDashboard(builder.Configuration);
+    //app.UseHangfireDashboard(builder.Configuration);
 
     app.MapControllers();
 
